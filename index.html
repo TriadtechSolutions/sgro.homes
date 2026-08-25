@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGRO - Coming Soon</title>
+  <meta name="description" content="SGRO Homes — A new home-appliance experience is coming soon.">
+  <meta name="theme-color" content="#08090c">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SGRO Homes — Coming Soon">
+  <meta property="og:description" content="A new home-appliance experience is on its way.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 font-family=%22sans-serif%22 font-weight=%22900%22 fill=%22%2338bdf8%22>S</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Ambient background glow layers -->
+  <div class="ambient-glow" aria-hidden="true">
+    <div class="glow-sphere glow-sphere-1"></div>
+    <div class="glow-sphere glow-sphere-2"></div>
+    <div class="glow-sphere glow-sphere-3"></div>
+  </div>
+
+  <div class="app-viewport">
+    <!-- Abstract Appliance Composition Background -->
+    <div class="abstract-appliance-stage" id="applianceStage" aria-hidden="true">
+      <div class="appliance-composition">
+        <!-- Refrigerator: Metallic vertical geometry & structural sheen -->
+        <div class="appliance-layer layer-fridge">
+          <div class="fridge-panel left-panel"></div>
+          <div class="fridge-seam"></div>
+          <div class="fridge-panel right-panel"></div>
+          <div class="handle-accent"></div>
+        </div>
+
+        <!-- Washing Machine: Concentric drum aperture & precision dial ring -->
+        <div class="appliance-layer layer-washer">
+          <svg class="washer-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="metalRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25" />
+                <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.15" />
+                <stop offset="100%" stop-color="#0f172a" stop-opacity="0.8" />
+              </linearGradient>
+              <radialGradient id="drumGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.22" />
+                <stop offset="60%" stop-color="#0284c7" stop-opacity="0.08" />
+                <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="arcGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6" />
+                <stop offset="100%" stop-color="#818cf8" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <!-- Outer Dial Ring -->
+            <circle cx="250" cy="250" r="230" stroke="url(#metalRim)" stroke-width="1.5" stroke-dasharray="8 6"
+              opacity="0.4" />
+            <!-- Glass Door Aperture Ring -->
+            <circle cx="250" cy="250" r="185" stroke="url(#metalRim)" stroke-width="3" opacity="0.6" />
+            <circle cx="250" cy="250" r="180" fill="url(#drumGlow)" />
+            <!-- Inner Concentric Drum Ribs -->
+            <circle cx="250" cy="250" r="135" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"
+              stroke-dasharray="120 10" />
+            <circle cx="250" cy="250" r="85" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5" />
+            <circle cx="250" cy="250" r="35" fill="rgba(56, 189, 248, 0.15)" stroke="rgba(255, 255, 255, 0.25)"
+              stroke-width="1" />
+            <!-- Dynamic Orbiting Light Segment -->
+            <path d="M 250,20 A 230,230 0 0,1 430,120" stroke="url(#arcGlow)" stroke-width="3" stroke-linecap="round"
+              class="orbit-arc" />
+          </svg>
+        </div>
+
+        <!-- AC Airflow Dynamics & Convection Arcs -->
+        <div class="appliance-layer layer-ac-flow">
+          <div class="airflow-stream stream-1"></div>
+          <div class="airflow-stream stream-2"></div>
+          <div class="airflow-stream stream-3"></div>
+        </div>
+
+        <!-- Smart Appliance Display & LED status matrix -->
+        <div class="appliance-layer layer-display-led">
+          <div class="led-ring"></div>
+          <div class="led-dot dot-active"></div>
+          <div class="led-dot dot-sec-1"></div>
+          <div class="led-dot dot-sec-2"></div>
+          <div class="display-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Hero Content -->
+    <main class="hero-main" id="main-content">
+      <div class="content-wrapper">
+
+        <!-- Brand Header -->
+        <header class="brand-header">
+          <div class="brand-logo" aria-label="SGRO Homes">
+            <span class="brand-sgro">SGRO</span>
+            <span class="brand-divider" aria-hidden="true"></span>
+            <span class="brand-homes">HOMES</span>
+          </div>
+        </header>
+
+        <!-- Main Headline Container -->
+        <div class="headline-container">
+          <div class="headline-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">NEXT-GEN HOME APPLIANCES</span>
+          </div>
+
+          <h1 class="coming-soon-title">
+            <span class="title-gradient" data-text="COMING SOON">COMING SOON</span>
+            <span class="title-backdrop" aria-hidden="true">COMING SOON</span>
+          </h1>
+
+          <p class="tagline">
+            A new home-appliance experience is on its way.
+          </p>
+        </div>
+
+        <!-- Subtle Decorative Accent Bar -->
+        <div class="accent-bar-wrap" aria-hidden="true">
+          <div class="accent-line"></div>
+          <div class="accent-node"></div>
+          <div class="accent-line"></div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
