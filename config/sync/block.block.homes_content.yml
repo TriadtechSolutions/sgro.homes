@@ -1,0 +1,22 @@
+uuid: 4fcde7e6-70a0-4e02-ba14-8cff2f67356d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - homes
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: homes_content
+theme: homes
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

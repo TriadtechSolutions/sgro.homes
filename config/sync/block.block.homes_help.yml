@@ -1,0 +1,22 @@
+uuid: 3151e47d-f62a-4465-8d9b-bf6918c3f4b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - homes
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: homes_help
+theme: homes
+region: top_header
+weight: 0
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }
