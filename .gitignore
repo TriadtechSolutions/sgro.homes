@@ -12,9 +12,9 @@
 legacy_backup/
 
 # Next.js
-/s gro/node_modules/
-/s gro/.next/
-/s gro/out/
+s gro/
+/s gro/
+
 
 # OS / IDE
 .DS_Store

@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Bootstrap Barrio Subtheme.
+
+homes.settings:
+  type: bootstrap_barrio.settings
+  label: 'Homes settings'
