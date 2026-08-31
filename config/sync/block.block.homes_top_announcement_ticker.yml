@@ -1,0 +1,25 @@
+uuid: b4a8b714-d160-4dd8-a7d6-0875111ff767
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:a55fa974-53d2-4cb6-b5d1-84c3c39d1301'
+  module:
+    - block_content
+  theme:
+    - homes
+id: homes_top_announcement_ticker
+theme: homes
+region: top_header
+weight: 0
+provider: null
+plugin: 'block_content:a55fa974-53d2-4cb6-b5d1-84c3c39d1301'
+settings:
+  id: 'block_content:a55fa974-53d2-4cb6-b5d1-84c3c39d1301'
+  label: 'Top Announcement Ticker Bar'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
