@@ -311,14 +311,17 @@ header.sgro-header {
 /* ----------------------------------------------------
  * 3. Header Action Buttons (Hotline & Book Visit CTA)
  * ---------------------------------------------------- */
-.header-action-buttons {
+.header-action-buttons,
+.header-action-container {
   display: flex !important;
   align-items: center !important;
   gap: 0.85rem !important;
 }
 
 /* Phone Hotline Badge Button */
-.header-action-buttons .btn-hotline {
+.btn-hotline,
+.header-action-buttons .btn-hotline,
+.header-action-container .btn-hotline {
   background-color: rgba(255, 255, 255, 0.85) !important;
   color: #1e293b !important;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
@@ -333,28 +336,31 @@ header.sgro-header {
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.5rem !important;
+  white-space: nowrap !important;
 }
 
-.header-action-buttons .btn-hotline *,
-.header-action-buttons .btn-hotline span {
+.btn-hotline *,
+.btn-hotline span {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 800 !important;
 }
 
-.header-action-buttons .btn-hotline:hover {
+.btn-hotline:hover {
   background-color: #ffffff !important;
   color: #1d4ed8 !important;
   border-color: #93c5fd !important;
   box-shadow: 0 4px 12px -2px rgba(29, 78, 216, 0.15) !important;
 }
 
-.header-action-buttons .btn-hotline svg {
+.btn-hotline svg {
   color: #1d4ed8 !important;
   stroke: #1d4ed8 !important;
 }
 
 /* Book Visit CTA Button */
-.header-action-buttons .btn-book-visit {
+.btn-book-visit,
+.header-action-buttons .btn-book-visit,
+.header-action-container .btn-book-visit {
   background-color: #1d4ed8 !important;
   color: #ffffff !important;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
@@ -371,23 +377,198 @@ header.sgro-header {
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.5rem !important;
+  white-space: nowrap !important;
 }
 
-.header-action-buttons .btn-book-visit *,
-.header-action-buttons .btn-book-visit span {
+.btn-book-visit *,
+.btn-book-visit span {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 800 !important;
 }
 
-.header-action-buttons .btn-book-visit:hover {
+.btn-book-visit:hover {
   background-color: #1e40af !important;
   box-shadow: 0 8px 22px rgba(29, 78, 216, 0.55) !important;
   color: #ffffff !important;
   transform: translateY(-1px) !important;
 }
 
-.header-action-buttons .btn-book-visit svg {
+.btn-book-visit svg {
   color: #ffffff !important;
   stroke: #ffffff !important;
+}
+
+/* ----------------------------------------------------
+ * 4. Responsive Layout Isolation & Mobile Drawer
+ * ---------------------------------------------------- */
+@media (min-width: 992px) {
+  /* Desktop Navbar in-flow inline alignment */
+  .sgro-header .collapse.navbar-collapse {
+    display: flex !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: auto !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    z-index: auto !important;
+    visibility: visible !important;
+  }
+
+  .primary-menu-container > ul,
+  .primary-menu-container .navbar-nav {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1.25rem !important; /* Tight gap to fit 6 items strictly in 1 line on iPad 1024px */
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+  }
+
+  .sgro-header .navbar-toggler {
+    display: none !important;
+  }
+}
+
+/* iPad 1024px specific enhancements: Increased Logo size & added side padding */
+@media (min-width: 992px) and (max-width: 1279.98px) {
+  .navbar-homes .container {
+    padding-left: 1.5rem !important; /* Added side padding on iPad 1024px */
+    padding-right: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
+  .navbar-homes .site-logo img,
+  .navbar-homes .navbar-brand img,
+  .navbar-homes .site-branding img,
+  .sgro-header img {
+    height: 72px !important;
+    max-height: 78px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .primary-menu-container > ul,
+  .primary-menu-container .navbar-nav {
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  /* Navbar height and side padding on mobile & tablet */
+  .navbar-homes .container {
+    min-height: 72px !important;
+    padding-left: 1rem !important; /* Added comfortable side padding on mobile & tablet */
+    padding-right: 1rem !important;
+  }
+
+  /* Compact button padding on tablet & mobile */
+  .header-action-buttons .btn-hotline,
+  .header-action-buttons .btn-book-visit,
+  .btn-hotline,
+  .btn-book-visit {
+    padding: 0.45rem 0.9rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Position collapse as full-width mobile drawer below header when open */
+  .sgro-header .collapse.navbar-collapse.show,
+  .sgro-header .collapse.navbar-collapse.collapsing {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background-color: #ffffff !important;
+    border-top: 1px solid #e2e8f0 !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    padding: 1.25rem 1.25rem 1.75rem 1.25rem !important;
+    z-index: 1050 !important;
+  }
+
+  /* Vertical navigation stack on mobile with 100% full-width divider lines */
+  .primary-menu-container {
+    width: 100% !important;
+  }
+
+  .primary-menu-container > .nav,
+  .primary-menu-container > .menu,
+  .primary-menu-container > ul,
+  .primary-menu-container div > ul,
+  .primary-menu-container .navbar-nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    width: 100% !important;
+  }
+
+  .primary-menu-container li,
+  .primary-menu-container .nav-item,
+  .primary-menu-container .menu-item {
+    width: 100% !important;
+    border-bottom: 1px solid #e2e8f0 !important; /* 100% Full Width divider line under each item */
+  }
+
+  .primary-menu-container li > a,
+  .primary-menu-container .nav-link,
+  .primary-menu-container .menu-item > a {
+    display: flex !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0.85rem 0 !important;
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    color: #1e293b !important;
+    border-bottom: none !important;
+  }
+
+  .primary-menu-container .nav-link.is-active,
+  .primary-menu-container .menu-item a.is-active,
+  .primary-menu-container .menu-item--active-trail > a {
+    color: #1d4ed8 !important;
+    font-weight: 900 !important;
+  }
+
+  /* Inline dropdown styling inside mobile drawer */
+  .primary-menu-container ul li ul,
+  .primary-menu-container .menu-item--expanded > ul,
+  .primary-menu-container .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: #f8fafc !important;
+    padding: 0.5rem 1rem !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  /* Mobile drawer CTA action buttons */
+  .btn-hotline-mobile {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 800 !important;
+    border: 1px solid #e2e8f0 !important;
+    text-decoration: none !important;
+  }
+
+  .btn-book-visit-mobile {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 900 !important;
+    background-color: #1d4ed8 !important;
+    border: none !important;
+    text-decoration: none !important;
+  }
+}
+
+/* Hide Helpline Hotline phone pill on mobile screens <640px matching Next.js (hidden sm:flex) */
+@media (max-width: 639.98px) {
+  .btn-hotline,
+  .header-action-buttons .btn-hotline,
+  .header-action-container .btn-hotline {
+    display: none !important;
+  }
 }
 
