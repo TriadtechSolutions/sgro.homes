@@ -1,0 +1,21 @@
+# Drupal & Composer
+/vendor/
+/.ddev/
+/web/sites/default/files/
+/web/sites/default/settings.php
+/web/sites/default/settings.local.php
+/web/modules/contrib/
+/web/sites/*/services*.yml
+/web/sites/*/private
+/web/core/
+/web/themes/contrib/
+legacy_backup/
+
+# Next.js
+/s gro/node_modules/
+/s gro/.next/
+/s gro/out/
+
+# OS / IDE
+.DS_Store
+*.log
