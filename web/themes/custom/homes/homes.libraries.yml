@@ -3,9 +3,12 @@ global-styling:
   js:
     js/global.js: {}
   css:
+    theme:
+      https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap: { type: external }
     component:
-      css/style.css: {}
       css/colors.css: {}
+      css/style.css: {}
+
 bootstrap:
   js:
     /libraries/popperjs/dist/umd/popper.min.js: { weight: -19 }

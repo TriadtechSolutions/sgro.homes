@@ -1,114 +1,69 @@
-/* ---------- Color Module Styles ----------- */
+/**
+ * @file
+ * S-Gro Homes Color Palette & Typography Variables derived from Next.js design system.
+ */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Fonts */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Girlike / Soft Blue Theme Palette */
+  --color-girlike-header-bg: #dceaf7;
+  --color-girlike-topbar-bg: #e4effa;
+  --color-girlike-footer-bg: #dceaf7;
+  --color-girlike-canvas-tint: #f4f8fc;
+  --color-girlike-dark-bg: #1e242d;
+  --color-girlike-border: #c8daf0;
+
+  /* Brand Colors */
+  --color-brand-blue: #1d4ed8;
+  --color-brand-blue-dark: #1e40af;
+  --color-brand-pink: #e11d48;
+  --color-brand-pink-hover: #be123c;
+
+  /* Text Colors */
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-600: #475569;
+  --color-slate-500: #64748b;
+}
+
+/* Global Font Family Overrides */
 body {
-  color: #3b3b3b;
-  background: #292929;
+  font-family: var(--font-body);
+  color: var(--color-slate-800);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
 }
 
-#page,
-#main-wrapper,
-.region-primary-menu .menu-item a.is-active,
-.region-primary-menu .menu-item--active-trail a {
-  background: #fff;
+h1, h2, h3, h4, h5, h6,
+.font-heading,
+.navbar-brand,
+.btn {
+  font-family: var(--font-heading);
 }
 
-.tabs ul.primary li a.is-active {
-  background-color: #fff;
+/* Color utility classes matching Next.js */
+a {
+  color: var(--color-brand-blue);
 }
 
-.tabs ul.primary li.is-active a {
-  background-color: #fff;
-  border-bottom-color: #fff;
-}
-
-#navbar-top {
-  background-color: #055a8e;
-}
-
-#navbar-main {
-  background-color: #1d84c3;
-}
-
-a,
-.link {
-  color: #0071b3;
-}
-
-a:hover,
-a:focus,
-.link:hover,
-.link:focus {
-  color: #018fe2;
-}
-.nav-item .dropdown-item a.active {
-  color: white;
-}
-.nav-link {
-  color: rgb(231, 231, 231);
-}
-.nav-link:hover,
-.nav-link:focus {
-  color: rgb(231, 231, 231);
-}
-a:active,
-.link:active {
-  color: #23aeff;
-}
-
-.page-item.active .page-link {
-  background-color: #0071b3;
-  border-color: #0071b3;
-}
-
-.page-link,
-.page-link:hover {
-  color: #0071b3;
-}
-
-.sidebar .block {
-  background-color: #f6f6f2;
-  border-color: #f9f9f9;
+a:hover {
+  color: var(--color-brand-blue-dark);
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(--color-brand-blue);
+  border-color: var(--color-brand-blue);
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #0256b1;
-}
-
-.site-footer {
-  background: #292929;
-}
-
-.region-header,
-.region-header a,
-.region-header li a.is-active,
-.region-header .site-branding__text,
-.region-header .site-branding,
-.region-header .site-branding__text a,
-.region-header .site-branding a,
-.region-secondary-menu .menu-item a,
-.region-secondary-menu .menu-item a.is-active {
-  color: #fffeff;
-}
-
-
-/* ---------- Color Form ----------- */
-
-[dir="rtl"] .color-form .color-palette {
-  margin-left: 0;
-  margin-right: 20px;
-}
-
-[dir="rtl"] .color-form .form-item label {
-  float: right;
-}
-
-[dir="rtl"] .color-form .color-palette .lock {
-  right: -20px;
-  left: 0;
+  background-color: var(--color-brand-blue-dark);
+  border-color: var(--color-brand-blue-dark);
 }
