@@ -1,0 +1,10 @@
+# Drupal & Composer
+/vendor/
+/web/sites/default/files/
+/web/sites/default/settings.php
+/web/sites/default/settings.local.php
+/web/modules/contrib/
+/web/sites/*/services*.yml
+/web/sites/*/private
+/web/core/
+/web/themes/contrib/
