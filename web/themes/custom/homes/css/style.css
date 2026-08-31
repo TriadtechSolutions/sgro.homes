@@ -1,164 +1,393 @@
 /**
  * @file
- * Custom S-Gro Homes Theme Styles based on Next.js frontend design.
+ * Perfect Next.js Header Styling Replication for Drupal Homes Theme.
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 /* ----------------------------------------------------
- * 1. Top Announcement Marquee Ticker Bar (page.top_header)
+ * 1. Top Announcement Marquee Bar (TopBar.tsx match)
  * ---------------------------------------------------- */
-.sgro-topbar-wrapper {
-  background-color: #e4effa;
-  color: #1e293b;
-  font-size: 0.75rem;
-  padding: 0.5rem 0;
-  overflow: hidden;
-  border-bottom: 1px solid #c8daf0;
-  user-select: none;
+.sgro-topbar {
+  background-color: #e4effa !important;
+  color: #334155 !important;
+  font-size: 0.75rem !important;
+  padding: 0.5rem 0 !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid #c8daf0 !important;
+  user-select: none !important;
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif !important;
 }
 
-.marquee-track-container {
-  overflow: hidden;
-  white-space: nowrap;
+.sgro-topbar .marquee-container {
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
 }
 
-.marquee-track {
-  display: inline-flex;
-  align-items: center;
-  gap: 2.5rem;
-  white-space: nowrap;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  animation: marquee-scroll 25s linear infinite;
+.sgro-topbar .marquee-track-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3rem !important; /* 48px gap between separate ticker items */
+  white-space: nowrap !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: #334155 !important;
+  flex-shrink: 0 !important;
+  min-width: 100% !important;
+  animation: marqueeScrollLeft 35s linear infinite !important;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee-scroll {
+@keyframes marqueeScrollLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+/* Bullet & Content styling - bullet sits at FRONT of item with tight gap */
+.sgro-topbar .ticker-item,
+.sgro-topbar .marquee-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important; /* Close gap between blue dot and item text */
+  white-space: nowrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.sgro-topbar .marquee-bullet {
+  color: #2563eb !important;
+  font-weight: 900 !important;
+  font-size: 0.85rem !important;
+  margin-right: 0.35rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transform: translateY(-2px) !important; /* Move dot up to align vertically with text */
+  line-height: 1 !important;
+}
+
+/* Ensure no duplicate pseudo bullets appear anywhere in topbar */
+.sgro-topbar .ticker-item::before,
+.sgro-topbar .ticker-item::after,
+.sgro-topbar .marquee-bullet::before,
+.sgro-topbar .marquee-bullet::after {
+  content: none !important;
+}
+
 /* ----------------------------------------------------
- * 2. Main Header & Navbar (page.header, page.primary_menu)
+ * 2. Main Header & Navbar Container (Navbar.tsx match)
  * ---------------------------------------------------- */
-.sgro-header {
-  background-color: #dceaf7;
-  border-bottom: 1px solid #c8daf0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+.sgro-header,
+header.sgro-header {
+  background-color: #dceaf7 !important;
+  border-bottom: 1px solid #c8daf0 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1040 !important;
 }
 
 .navbar-homes {
-  padding-top: 0.85rem;
-  padding-bottom: 0.85rem;
+  padding: 0 !important;
+  background-color: transparent !important;
 }
 
-/* Logo Styling */
+.navbar-homes .container {
+  min-height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+@media (min-width: 640px) {
+  .navbar-homes .container {
+    min-height: 96px !important;
+  }
+}
+
+/* Brand Logo (Logo.tsx match) */
 .navbar-homes .site-logo img,
-.navbar-homes .navbar-brand img {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
+.navbar-homes .navbar-brand img,
+.navbar-homes .site-branding img,
+.sgro-header img {
+  height: 52px !important;
+  max-height: 64px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  object-position: left !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-/* Primary Navigation Menu */
-.primary-menu-container .nav,
-.primary-menu-container .menu {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+@media (min-width: 640px) {
+  .navbar-homes .site-logo img,
+  .navbar-homes .navbar-brand img,
+  .navbar-homes .site-branding img,
+  .sgro-header img {
+    height: 64px !important;
+  }
 }
 
+.navbar-homes .site-logo:hover img,
+.navbar-homes .navbar-brand:hover img,
+.navbar-homes .site-branding:hover img {
+  transform: scale(1.05) !important;
+}
+
+/* ----------------------------------------------------
+ * 2A. Primary Navigation Items & Typography
+ * ---------------------------------------------------- */
+.primary-menu-container {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Top Level Menu List (All Drupal Menu Selectors) */
+.primary-menu-container > .nav,
+.primary-menu-container > .menu,
+.primary-menu-container > ul,
+.primary-menu-container div > ul,
+.primary-menu-container .navbar-nav {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Top Level Menu Item Links */
+.primary-menu-container li,
+.primary-menu-container .nav-item,
+.primary-menu-container .menu-item {
+  position: relative !important;
+  list-style: none !important;
+}
+
+.primary-menu-container li > a,
 .primary-menu-container .nav-link,
-.primary-menu-container .menu-item a {
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.primary-menu-container .menu-item > a {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
   color: #1e293b !important;
-  text-decoration: none;
-  padding: 0.5rem 0.25rem;
-  transition: color 0.2s ease-in-out;
-  position: relative;
+  text-decoration: none !important;
+  padding: 0.5rem 0 !important;
+  transition: color 0.2s ease-in-out !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  background: transparent !important;
+  border: none !important;
 }
 
+.primary-menu-container li > a:hover,
 .primary-menu-container .nav-link:hover,
-.primary-menu-container .menu-item a:hover {
+.primary-menu-container .menu-item > a:hover {
   color: #1d4ed8 !important;
 }
 
+/* Active Link State (Next.js font-black + border-b-2) */
 .primary-menu-container .nav-link.is-active,
+.primary-menu-container .nav-link.active,
 .primary-menu-container .menu-item a.is-active,
-.primary-menu-container .menu-item--active-trail a {
+.primary-menu-container .menu-item a.active,
+.primary-menu-container .menu-item--active-trail > a,
+.primary-menu-container .is-active {
   color: #1e40af !important;
-  font-weight: 900;
-  border-bottom: 2px solid #1d4ed8;
+  font-weight: 900 !important;
+  border-bottom: 2px solid #1d4ed8 !important;
+  padding-bottom: 0.25rem !important;
 }
 
-/* Dropdown Sub-menu */
+/* Animated Rotating Dropdown Chevron Icon for Parents */
+.primary-menu-container .menu-item--expanded > a::after,
+.primary-menu-container .menu-item--has-children > a::after,
+.primary-menu-container .dropdown-toggle::after {
+  content: '' !important;
+  display: inline-block !important;
+  width: 0.45rem !important;
+  height: 0.45rem !important;
+  border-right: 2px solid #64748b !important;
+  border-bottom: 2px solid #64748b !important;
+  transform: rotate(45deg) translateY(-2px) !important;
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+  margin-left: 0.2rem !important;
+  border-top: none !important;
+  border-left: none !important;
+}
+
+.primary-menu-container .menu-item--expanded:hover > a::after,
+.primary-menu-container .menu-item--has-children:hover > a::after,
+.primary-menu-container .dropdown:hover > .dropdown-toggle::after {
+  transform: rotate(225deg) translateY(-1px) !important;
+  border-color: #1d4ed8 !important;
+}
+
+/* ----------------------------------------------------
+ * 2B. Dropdown Sub-menu Popover (Card Styling)
+ * ---------------------------------------------------- */
+.primary-menu-container ul li ul,
+.primary-menu-container .menu-item--expanded > ul,
+.primary-menu-container .menu-item--has-children > ul,
 .primary-menu-container .dropdown-menu {
-  border-radius: 1rem;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  padding: 0.75rem 0;
+  display: none !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  width: 16rem !important; /* 256px vertical popover card */
+  flex-direction: column !important;
+  background-color: #ffffff !important;
+  border-radius: 1rem !important;
+  padding: 0.75rem 0.5rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+  z-index: 1000 !important;
+  gap: 0.2rem !important;
+  margin-top: 0.5rem !important;
+  list-style: none !important;
 }
 
+/* Show Submenu Popover on Hover */
+.primary-menu-container ul li:hover > ul,
+.primary-menu-container .menu-item--expanded:hover > ul,
+.primary-menu-container .menu-item--has-children:hover > ul,
+.primary-menu-container .dropdown:hover > .dropdown-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  animation: fadeInDropdown 0.2s ease-out forwards !important;
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Submenu Items - Vertical Stack */
+.primary-menu-container ul li ul li,
+.primary-menu-container .menu-item--expanded > ul > li,
+.primary-menu-container .dropdown-menu > li {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.primary-menu-container ul li ul li a,
+.primary-menu-container .menu-item--expanded > ul > li a,
 .primary-menu-container .dropdown-item {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #334155;
-  padding: 0.6rem 1.25rem;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+  text-transform: none !important; /* Sentence case like Next.js */
+  letter-spacing: normal !important;
+  padding: 0.65rem 1rem !important;
+  display: block !important;
+  width: 100% !important;
+  border-radius: 0.5rem !important;
+  border-bottom: none !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
 }
 
+.primary-menu-container ul li ul li a:hover,
+.primary-menu-container .menu-item--expanded > ul > li a:hover,
 .primary-menu-container .dropdown-item:hover {
-  background-color: #eff6ff;
-  color: #1d4ed8;
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
 }
 
 /* ----------------------------------------------------
  * 3. Header Action Buttons (Hotline & Book Visit CTA)
  * ---------------------------------------------------- */
+.header-action-buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+}
+
+/* Phone Hotline Badge Button */
 .header-action-buttons .btn-hotline {
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #1e293b;
-  font-size: 0.75rem;
-  font-weight: 900;
-  border: 1px solid rgba(147, 197, 253, 0.8);
-  border-radius: 9999px;
-  padding: 0.5rem 1.1rem;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  color: #1e293b !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(191, 219, 254, 0.9) !important;
+  border-radius: 9999px !important;
+  padding: 0.55rem 1.15rem !important;
+  transition: all 0.2s ease-in-out !important;
+  text-decoration: none !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.header-action-buttons .btn-hotline *,
+.header-action-buttons .btn-hotline span {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 800 !important;
 }
 
 .header-action-buttons .btn-hotline:hover {
-  background-color: #ffffff;
-  color: #1d4ed8;
-  border-color: #93c5fd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff !important;
+  color: #1d4ed8 !important;
+  border-color: #93c5fd !important;
+  box-shadow: 0 4px 12px -2px rgba(29, 78, 216, 0.15) !important;
 }
 
+.header-action-buttons .btn-hotline svg {
+  color: #1d4ed8 !important;
+  stroke: #1d4ed8 !important;
+}
+
+/* Book Visit CTA Button */
 .header-action-buttons .btn-book-visit {
-  background-color: #1d4ed8;
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: 9999px;
-  padding: 0.55rem 1.35rem;
-  box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.2);
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  border: none;
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-radius: 9999px !important;
+  padding: 0.6rem 1.4rem !important;
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.4) !important;
+  transition: all 0.2s ease-in-out !important;
+  text-decoration: none !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.header-action-buttons .btn-book-visit *,
+.header-action-buttons .btn-book-visit span {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 800 !important;
 }
 
 .header-action-buttons .btn-book-visit:hover {
-  background-color: #1e40af;
-  box-shadow: 0 10px 15px -3px rgba(29, 78, 216, 0.3);
-  color: #ffffff;
+  background-color: #1e40af !important;
+  box-shadow: 0 8px 22px rgba(29, 78, 216, 0.55) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
 }
+
+.header-action-buttons .btn-book-visit svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+

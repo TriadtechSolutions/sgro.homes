@@ -1,55 +1,62 @@
 {#
 /**
  * @file
- * Custom Homes theme page.html.twig implementation with dynamic header block regions.
+ * Custom Homes theme page.html.twig implementation replicating Next.js header layout.
  */
 #}
 
 <div id="page-wrapper">
   <div id="page">
 
-    {# 1. Top Header Announcement Bar (Dynamic Region: {{ page.top_header }}) #}
-    {% if page.top_header %}
-      <div class="sgro-topbar-wrapper">
-        <div class="container-fluid max-w-7xl mx-auto px-4">
-          <div class="marquee-track-container">
-            <div class="marquee-track">
-              {{ page.top_header }}
-            </div>
-          </div>
+    {# 1. Top Announcement Marquee Ticker Bar #}
+    <div class="sgro-topbar">
+      <div class="marquee-container flex items-center">
+        <div class="marquee-track-left">
+          <span class="ticker-item"><span class="marquee-bullet">•</span>⚡ USE CODE SGRO10 TO GET ₹100 OFF ON YOUR FIRST SERVICE BOOKING</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>90-MINUTE DOORSTEP ARRIVAL GUARANTEE ACROSS COIMBATORE, TAMIL NADU & SURROUNDING DISTRICTS</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>100% GENUINE OEM SPARE PARTS WITH UP TO 180-DAY WARRANTY</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>DIRECT HELPLINE: +91 98765 43210 / +91 91234 56789</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>CERTIFIED TECHNICIANS FOR LG, SAMSUNG, WHIRLPOOL, BOSCH, VOLTAS & MORE</span>
+        </div>
+        <div class="marquee-track-left" aria-hidden="true">
+          <span class="ticker-item"><span class="marquee-bullet">•</span>⚡ USE CODE SGRO10 TO GET ₹100 OFF ON YOUR FIRST SERVICE BOOKING</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>90-MINUTE DOORSTEP ARRIVAL GUARANTEE ACROSS COIMBATORE, TAMIL NADU & SURROUNDING DISTRICTS</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>100% GENUINE OEM SPARE PARTS WITH UP TO 180-DAY WARRANTY</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>DIRECT HELPLINE: +91 98765 43210 / +91 91234 56789</span>
+          <span class="ticker-item"><span class="marquee-bullet">•</span>CERTIFIED TECHNICIANS FOR LG, SAMSUNG, WHIRLPOOL, BOSCH, VOLTAS & MORE</span>
         </div>
       </div>
-    {% endif %}
+    </div>
 
-    {# 2. Main Header & Navbar (Dynamic Regions: {{ page.header }}, {{ page.primary_menu }}) #}
+    {# 2. Main Header & Navbar #}
     <header class="sgro-header sticky-top">
-      <nav class="navbar navbar-expand-lg navbar-homes">
-        <div class="container-fluid max-w-7xl mx-auto px-4 flex items-center justify-between">
+      <nav class="navbar navbar-expand-lg navbar-homes py-0">
+        <div class="container max-w-7xl mx-auto px-4 sm:px-6 h-20 sm:h-24 flex items-center justify-between w-100">
 
-          {# Left: Site Branding / Logo Region #}
+          {# Left: Brand Logo Region #}
           {% if page.header %}
-            <div class="navbar-brand d-flex align-items-center me-4">
+            <div class="navbar-brand d-flex align-items-center me-4 py-0">
               {{ page.header }}
             </div>
           {% endif %}
 
-          {# Mobile Toggler #}
-          <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#HomesCollapsingNavbar" aria-controls="HomesCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          {# Mobile Hamburger Toggler #}
+          <button class="navbar-toggler border-0 p-2 text-slate-800" type="button" data-bs-toggle="collapse" data-bs-target="#HomesCollapsingNavbar" aria-controls="HomesCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          {# Center: Primary Menu Region #}
+          {# Center: Primary Navigation Menu #}
           <div class="collapse navbar-collapse justify-content-center" id="HomesCollapsingNavbar">
             {% if page.primary_menu %}
-              <div class="primary-menu-container me-lg-auto">
+              <div class="primary-menu-container mx-auto">
                 {{ page.primary_menu }}
               </div>
             {% endif %}
 
-            {# Right: Action Buttons (Hotline & Book Visit CTA) #}
-            <div class="header-action-buttons d-flex align-items-center gap-3 mt-3 mt-lg-0">
-              <a href="tel:+919876543210" class="btn btn-hotline d-inline-flex align-items-center gap-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            {# Right: Phone Hotline & Quick Booking Button #}
+            <div class="header-action-buttons d-flex align-items-center gap-3 ms-lg-auto mt-3 mt-lg-0">
+              <a href="tel:+919876543210" class="btn btn-hotline d-inline-flex align-items-center gap-2" title="Call Helpline">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
                 <span>+91 98765 43210</span>
