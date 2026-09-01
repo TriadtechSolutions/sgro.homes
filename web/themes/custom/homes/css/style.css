@@ -29,7 +29,8 @@
 .sgro-topbar .marquee-track-left {
   display: flex !important;
   align-items: center !important;
-  gap: 3rem !important; /* 48px gap between separate ticker items */
+  gap: 3rem !important;
+  /* 48px gap between separate ticker items */
   white-space: nowrap !important;
   font-size: 0.75rem !important;
   font-weight: 700 !important;
@@ -42,8 +43,13 @@
 }
 
 @keyframes marqueeScrollLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Bullet & Content styling - bullet sits at FRONT of item with tight gap */
@@ -51,7 +57,8 @@
 .sgro-topbar .marquee-item {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 0.4rem !important; /* Close gap between blue dot and item text */
+  gap: 0.4rem !important;
+  /* Close gap between blue dot and item text */
   white-space: nowrap !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -65,7 +72,8 @@
   margin-right: 0.35rem !important;
   display: inline-flex !important;
   align-items: center !important;
-  transform: translateY(-2px) !important; /* Move dot up to align vertically with text */
+  transform: translateY(-2px) !important;
+  /* Move dot up to align vertically with text */
   line-height: 1 !important;
 }
 
@@ -87,7 +95,7 @@ header.sgro-header {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
   position: sticky !important;
   top: 0 !important;
-  z-index: 1040 !important;
+  z-index: 99 !important;
 }
 
 .navbar-homes {
@@ -122,6 +130,7 @@ header.sgro-header {
 }
 
 @media (min-width: 640px) {
+
   .navbar-homes .site-logo img,
   .navbar-homes .navbar-brand img,
   .navbar-homes .site-branding img,
@@ -140,15 +149,15 @@ header.sgro-header {
  * 2A. Primary Navigation Items & Typography
  * ---------------------------------------------------- */
 .primary-menu-container {
-  display: flex !important;
+  /* display: flex !important; */
   align-items: center !important;
 }
 
 /* Top Level Menu List (All Drupal Menu Selectors) */
-.primary-menu-container > .nav,
-.primary-menu-container > .menu,
-.primary-menu-container > ul,
-.primary-menu-container div > ul,
+.primary-menu-container>.nav,
+.primary-menu-container>.menu,
+.primary-menu-container>ul,
+.primary-menu-container div>ul,
 .primary-menu-container .navbar-nav {
   display: flex !important;
   flex-direction: row !important;
@@ -167,9 +176,9 @@ header.sgro-header {
   list-style: none !important;
 }
 
-.primary-menu-container li > a,
+.primary-menu-container li>a,
 .primary-menu-container .nav-link,
-.primary-menu-container .menu-item > a {
+.primary-menu-container .menu-item>a {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 0.75rem !important;
   font-weight: 800 !important;
@@ -186,9 +195,9 @@ header.sgro-header {
   border: none !important;
 }
 
-.primary-menu-container li > a:hover,
+.primary-menu-container li>a:hover,
 .primary-menu-container .nav-link:hover,
-.primary-menu-container .menu-item > a:hover {
+.primary-menu-container .menu-item>a:hover {
   color: #1d4ed8 !important;
 }
 
@@ -197,7 +206,7 @@ header.sgro-header {
 .primary-menu-container .nav-link.active,
 .primary-menu-container .menu-item a.is-active,
 .primary-menu-container .menu-item a.active,
-.primary-menu-container .menu-item--active-trail > a,
+.primary-menu-container .menu-item--active-trail>a,
 .primary-menu-container .is-active {
   color: #1e40af !important;
   font-weight: 900 !important;
@@ -206,8 +215,8 @@ header.sgro-header {
 }
 
 /* Animated Rotating Dropdown Chevron Icon for Parents */
-.primary-menu-container .menu-item--expanded > a::after,
-.primary-menu-container .menu-item--has-children > a::after,
+.primary-menu-container .menu-item--expanded>a::after,
+.primary-menu-container .menu-item--has-children>a::after,
 .primary-menu-container .dropdown-toggle::after {
   content: '' !important;
   display: inline-block !important;
@@ -222,9 +231,9 @@ header.sgro-header {
   border-left: none !important;
 }
 
-.primary-menu-container .menu-item--expanded:hover > a::after,
-.primary-menu-container .menu-item--has-children:hover > a::after,
-.primary-menu-container .dropdown:hover > .dropdown-toggle::after {
+.primary-menu-container .menu-item--expanded:hover>a::after,
+.primary-menu-container .menu-item--has-children:hover>a::after,
+.primary-menu-container .dropdown:hover>.dropdown-toggle::after {
   transform: rotate(225deg) translateY(-1px) !important;
   border-color: #1d4ed8 !important;
 }
@@ -233,31 +242,32 @@ header.sgro-header {
  * 2B. Dropdown Sub-menu Popover (Card Styling)
  * ---------------------------------------------------- */
 .primary-menu-container ul li ul,
-.primary-menu-container .menu-item--expanded > ul,
-.primary-menu-container .menu-item--has-children > ul,
+.primary-menu-container .menu-item--expanded>ul,
+.primary-menu-container .menu-item--has-children>ul,
 .primary-menu-container .dropdown-menu {
   display: none !important;
   position: absolute !important;
   top: 100% !important;
   left: 0 !important;
-  width: 16rem !important; /* 256px vertical popover card */
+  width: 16rem !important;
+  /* 256px vertical popover card */
   flex-direction: column !important;
   background-color: #ffffff !important;
   border-radius: 1rem !important;
   padding: 0.75rem 0.5rem !important;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
   border: 1px solid #e2e8f0 !important;
-  z-index: 1000 !important;
+  z-index: 100 !important;
   gap: 0.2rem !important;
   margin-top: 0.5rem !important;
   list-style: none !important;
 }
 
 /* Show Submenu Popover on Hover */
-.primary-menu-container ul li:hover > ul,
-.primary-menu-container .menu-item--expanded:hover > ul,
-.primary-menu-container .menu-item--has-children:hover > ul,
-.primary-menu-container .dropdown:hover > .dropdown-menu {
+.primary-menu-container ul li:hover>ul,
+.primary-menu-container .menu-item--expanded:hover>ul,
+.primary-menu-container .menu-item--has-children:hover>ul,
+.primary-menu-container .dropdown:hover>.dropdown-menu {
   display: flex !important;
   flex-direction: column !important;
   animation: fadeInDropdown 0.2s ease-out forwards !important;
@@ -268,6 +278,7 @@ header.sgro-header {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -276,8 +287,8 @@ header.sgro-header {
 
 /* Submenu Items - Vertical Stack */
 .primary-menu-container ul li ul li,
-.primary-menu-container .menu-item--expanded > ul > li,
-.primary-menu-container .dropdown-menu > li {
+.primary-menu-container .menu-item--expanded>ul>li,
+.primary-menu-container .dropdown-menu>li {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
@@ -285,13 +296,14 @@ header.sgro-header {
 }
 
 .primary-menu-container ul li ul li a,
-.primary-menu-container .menu-item--expanded > ul > li a,
+.primary-menu-container .menu-item--expanded>ul>li a,
 .primary-menu-container .dropdown-item {
   font-family: 'Plus Jakarta Sans', sans-serif !important;
   font-size: 0.75rem !important;
   font-weight: 700 !important;
   color: #334155 !important;
-  text-transform: none !important; /* Sentence case like Next.js */
+  text-transform: none !important;
+  /* Sentence case like Next.js */
   letter-spacing: normal !important;
   padding: 0.65rem 1rem !important;
   display: block !important;
@@ -302,7 +314,7 @@ header.sgro-header {
 }
 
 .primary-menu-container ul li ul li a:hover,
-.primary-menu-container .menu-item--expanded > ul > li a:hover,
+.primary-menu-container .menu-item--expanded>ul>li a:hover,
 .primary-menu-container .dropdown-item:hover {
   background-color: #eff6ff !important;
   color: #1d4ed8 !important;
@@ -402,6 +414,7 @@ header.sgro-header {
  * 4. Responsive Layout Isolation & Mobile Drawer
  * ---------------------------------------------------- */
 @media (min-width: 992px) {
+
   /* Desktop Navbar in-flow inline alignment */
   .sgro-header .collapse.navbar-collapse {
     display: flex !important;
@@ -418,11 +431,12 @@ header.sgro-header {
     visibility: visible !important;
   }
 
-  .primary-menu-container > ul,
+  .primary-menu-container>ul,
   .primary-menu-container .navbar-nav {
     flex-direction: row !important;
     align-items: center !important;
-    gap: 1.25rem !important; /* Tight gap to fit 6 items strictly in 1 line on iPad 1024px */
+    gap: 1.25rem !important;
+    /* Tight gap to fit 6 items strictly in 1 line on iPad 1024px */
     flex-wrap: nowrap !important;
     white-space: nowrap !important;
   }
@@ -435,7 +449,8 @@ header.sgro-header {
 /* iPad 1024px specific enhancements: Increased Logo size & added side padding */
 @media (min-width: 992px) and (max-width: 1279.98px) {
   .navbar-homes .container {
-    padding-left: 1.5rem !important; /* Added side padding on iPad 1024px */
+    padding-left: 1.5rem !important;
+    /* Added side padding on iPad 1024px */
     padding-right: 1.5rem !important;
     max-width: 100% !important;
   }
@@ -450,17 +465,20 @@ header.sgro-header {
 }
 
 @media (min-width: 1280px) {
-  .primary-menu-container > ul,
+
+  .primary-menu-container>ul,
   .primary-menu-container .navbar-nav {
     gap: 2rem !important;
   }
 }
 
 @media (max-width: 991.98px) {
+
   /* Navbar height and side padding on mobile & tablet */
   .navbar-homes .container {
     min-height: 72px !important;
-    padding-left: 1rem !important; /* Added comfortable side padding on mobile & tablet */
+    padding-left: 1rem !important;
+    /* Added comfortable side padding on mobile & tablet */
     padding-right: 1rem !important;
   }
 
@@ -473,9 +491,19 @@ header.sgro-header {
     font-size: 0.7rem !important;
   }
 
-  /* Position collapse as full-width mobile drawer below header when open */
-  .sgro-header .collapse.navbar-collapse.show,
-  .sgro-header .collapse.navbar-collapse.collapsing {
+  /* Position collapse as full-width mobile drawer below header when open (Jump Mode: instant display) */
+  .sgro-header #HomesCollapsingNavbar {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .sgro-header #HomesCollapsingNavbar:not(.show):not(.is-open) {
+    display: none !important;
+  }
+
+  .sgro-header #HomesCollapsingNavbar.show,
+  .sgro-header #HomesCollapsingNavbar.is-open {
+    display: block !important;
     position: absolute !important;
     top: 100% !important;
     left: 0 !important;
@@ -485,7 +513,9 @@ header.sgro-header {
     border-top: 1px solid #e2e8f0 !important;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
     padding: 1.25rem 1.25rem 1.75rem 1.25rem !important;
-    z-index: 1050 !important;
+    z-index: 105 !important;
+    transition: none !important;
+    animation: none !important;
   }
 
   /* Vertical navigation stack on mobile with 100% full-width divider lines */
@@ -493,10 +523,10 @@ header.sgro-header {
     width: 100% !important;
   }
 
-  .primary-menu-container > .nav,
-  .primary-menu-container > .menu,
-  .primary-menu-container > ul,
-  .primary-menu-container div > ul,
+  .primary-menu-container>.nav,
+  .primary-menu-container>.menu,
+  .primary-menu-container>ul,
+  .primary-menu-container div>ul,
   .primary-menu-container .navbar-nav {
     flex-direction: column !important;
     align-items: stretch !important;
@@ -508,12 +538,23 @@ header.sgro-header {
   .primary-menu-container .nav-item,
   .primary-menu-container .menu-item {
     width: 100% !important;
-    border-bottom: 1px solid #e2e8f0 !important; /* 100% Full Width divider line under each item */
+    border-bottom: 1px solid #e2e8f0 !important;
+    /* 100% Full Width divider line under each item */
   }
 
-  .primary-menu-container li > a,
+  /* Mobile/Tablet active menu item: NO active line under item, ONLY menu word active */
+  .primary-menu-container li.menu-item--active-trail,
+  .primary-menu-container li.is-active,
+  .primary-menu-container li.active,
+  .primary-menu-container li:has(.is-active),
+  .primary-menu-container li:has(.active) {
+    border-bottom: 1px solid #e2e8f0 !important;
+    /* Standard divider line only */
+  }
+
+  .primary-menu-container li>a,
   .primary-menu-container .nav-link,
-  .primary-menu-container .menu-item > a {
+  .primary-menu-container .menu-item>a {
     display: flex !important;
     justify-content: space-between !important;
     width: 100% !important;
@@ -525,15 +566,23 @@ header.sgro-header {
   }
 
   .primary-menu-container .nav-link.is-active,
+  .primary-menu-container .nav-link.active,
   .primary-menu-container .menu-item a.is-active,
-  .primary-menu-container .menu-item--active-trail > a {
+  .primary-menu-container .menu-item a.active,
+  .primary-menu-container .menu-item--active-trail>a,
+  .primary-menu-container .is-active {
     color: #1d4ed8 !important;
     font-weight: 900 !important;
+    width: 100% !important;
+    display: flex !important;
+    border-bottom: none !important;
+    /* NO active line on mobile and tablet */
+    margin-bottom: 0 !important;
   }
 
   /* Inline dropdown styling inside mobile drawer */
   .primary-menu-container ul li ul,
-  .primary-menu-container .menu-item--expanded > ul,
+  .primary-menu-container .menu-item--expanded>ul,
   .primary-menu-container .dropdown-menu {
     position: static !important;
     width: 100% !important;
@@ -565,6 +614,7 @@ header.sgro-header {
 
 /* Hide Helpline Hotline phone pill on mobile screens <640px matching Next.js (hidden sm:flex) */
 @media (max-width: 639.98px) {
+
   .btn-hotline,
   .header-action-buttons .btn-hotline,
   .header-action-container .btn-hotline {
@@ -572,3 +622,38 @@ header.sgro-header {
   }
 }
 
+@media (max-width: 767.98px) {
+  .hero-banner-section {
+    min-height: auto;
+    padding: 2.5rem 0;
+  }
+
+  .hero-banner-section .hero-overlay {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 100%);
+  }
+
+  .hero-banner-section .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-banner-section .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-banner-section .hero-actions {
+    width: 100%;
+  }
+
+  .hero-banner-section .btn-hero-primary,
+  .hero-banner-section .btn-hero-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-banner-section .hero-features-bar {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem 1rem !important;
+    font-size: 0.8rem;
+  }
+}

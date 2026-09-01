@@ -63,8 +63,16 @@
             </a>
 
             {# Mobile Hamburger Toggler Icon #}
-            <button class="navbar-toggler border-0 p-2 text-slate-800 shadow-none d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#HomesCollapsingNavbar" aria-controls="HomesCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0 p-2 text-slate-800 shadow-none d-lg-none" id="homes-mobile-toggler" type="button" aria-controls="HomesCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+              <svg class="hamburger-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+              </svg>
+              <svg class="hamburger-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
           </div>
 
