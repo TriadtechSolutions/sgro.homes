@@ -8,6 +8,7 @@ global-styling:
     component:
       css/colors.css: {}
       css/style.css: {}
+      css/homepage.css: {}
 
 bootstrap:
   js:

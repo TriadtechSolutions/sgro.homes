@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Child Paragraph template for Home Banner Feature (home_banner_feature).
+ * Matching Next.js TrustFeatures styling and vibrant colored icons.
+ */
+#}
+
+{% set feature_title = paragraph.field_title.value %}
+
+<div class="hero-feature-item d-inline-flex align-items-center gap-2 mb-0">
+  {% if 'Rating' in feature_title or '4.9' in feature_title %}
+    <svg class="star-icon flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+  {% elseif 'Arrival' in feature_title or 'Min' in feature_title or '90-Min' in feature_title %}
+    <svg class="feature-icon-clock flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </svg>
+  {% elseif 'Warranty' in feature_title or '90-Day' in feature_title %}
+    <svg class="feature-icon-shield flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+  {% else %}
+    <svg class="feature-icon-spares flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+  {% endif %}
+
+  <span class="feature-title-text fw-bold text-white text-xs">
+    {{ feature_title }}
+  </span>
+</div>
