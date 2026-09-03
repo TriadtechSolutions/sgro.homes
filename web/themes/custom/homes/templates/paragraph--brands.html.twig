@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Child Paragraph template: brands (bundle machine name)
+ * Twig auto-discovery: paragraph--brands.html.twig
+ *
+ * Design reference: Next.js page.tsx lines 493-501
+ *   bg-white border border-slate-200 px-5 py-2.5 rounded-2xl
+ *   font-black text-slate-800 text-sm hover:border-blue-400
+ *
+ * Confirmed fields from DB:
+ *   - field_brand       string   brand name e.g. "Whirlpool", "Daikin", "Godrej"
+ *   - field_title       string   fallback title
+ *   - field_badge_text  string   tag pill e.g. "Popular", "HVAC Specialist"
+ */
+#}
+
+{# ── Resolve Brand Name & Tag ── #}
+{% set brand_name = paragraph.field_brand.value ?: (paragraph.field_title.value ?: '') %}
+{% set brand_tag  = paragraph.field_badge_text.value ?: '' %}
+
+{% if brand_name %}
+  <div class="our-brand-pill">
+    <span class="our-brand-name">{{ brand_name }}</span>
+    {% if brand_tag %}
+      <span class="our-brand-tag">{{ brand_tag }}</span>
+    {% endif %}
+  </div>
+{% endif %}

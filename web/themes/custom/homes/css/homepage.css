@@ -1158,3 +1158,168 @@ header.sgro-header,
   }
 }
 
+
+/* ============================================================
+   MULTI-BRAND SERVICE COMPATIBILITY — OUR BRANDS SECTION
+   Paragraph bundle   : our_brands (parent)
+   Child bundle       : brands     (child)
+   Templates:
+     - paragraph--our-brands.html.twig
+     - paragraph--brands.html.twig
+   Design reference   : Next.js page.tsx Section 6 (lines 479-505)
+     bg: #f0f7fe (soft light blue) | border-y: 1px solid #dceaf7
+     Header: centred eyebrow + font-black H3
+     Marquee: continuous infinite smooth CSS animation scroll
+     Pills: white bg, rounded-2xl, border #e2e8f0, brand name + tag badge
+   ============================================================ */
+
+/* ── Section Shell ── */
+.our-brands-section {
+  background-color: #f0f7fe;
+  border-top: 1px solid #dceaf7;
+  border-bottom: 1px solid #dceaf7;
+  padding: 3.5rem 0;
+  overflow: hidden;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+@media (min-width: 640px) {
+  .our-brands-section {
+    padding: 4.5rem 0;
+  }
+}
+
+/* ── Container (Header only) ── */
+.our-brands-container {
+  max-width: 72rem; /* max-w-6xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ── Centred Header ── */
+.our-brands-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Eyebrow — "AUTHORIZED QUALITY STANDARDS" */
+.our-brands-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #94a3b8; /* slate-400 */
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+/* H3 — "Multi-Brand Service Compatibility" */
+.our-brands-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.25rem, 3.5vw, 1.625rem); /* text-xl sm:text-2xl */
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0;
+}
+
+/* ── Marquee Outer Overflow Wrapper (100% Full Width Edge-to-Edge) ── */
+.our-brands-marquee-wrap {
+  overflow: hidden;
+  padding: 0.5rem 0;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ── Continuous Infinite Scroll Marquee Track ── */
+.our-brands-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: max-content;
+  animation: brandsMarqueeScroll 35s linear infinite;
+  will-change: transform;
+}
+
+.our-brands-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes brandsMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Brand Pill (matches Next.js brand pill) ── */
+.our-brand-pill {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  padding: 0.65rem 1.25rem;
+  border-radius: 1rem; /* rounded-2xl */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.our-brand-pill:hover {
+  border-color: #60a5fa; /* blue-400 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px 0 rgba(37, 99, 235, 0.12);
+}
+
+/* Brand Name */
+.our-brand-name {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 0.875rem; /* text-sm */
+  color: #1e293b; /* slate-800 */
+  white-space: nowrap;
+}
+
+/* Brand Tag Badge */
+.our-brand-tag {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.5625rem; /* text-[9px] */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #eff6ff; /* blue-50 */
+  color: #1d4ed8; /* blue-700 */
+  padding: 0.125rem 0.5rem;
+  border-radius: 50rem;
+  white-space: nowrap;
+}
+
+/* Responsive Overrides */
+@media (max-width: 639.98px) {
+  .our-brands-section {
+    padding: 2.5rem 0.5rem;
+  }
+
+  .our-brands-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .our-brand-pill {
+    padding: 0.5rem 1rem;
+  }
+
+  .our-brand-name {
+    font-size: 0.8125rem;
+  }
+}
+
+

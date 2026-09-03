@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Parent Paragraph template: our_brands (bundle machine name)
+ * Twig auto-discovery: paragraph--our-brands.html.twig
+ *
+ * Design reference: Next.js page.tsx Section 6 "Multi-Brand Marquee"
+ *                   (lines 479-505)
+ *
+ * Layout:
+ *   - Section header is centered inside container (max-w-6xl)
+ *   - Marquee slider is full width / edge-to-edge (100% viewport width)
+ */
+#}
+
+{# ── Resolve Header Strings ── #}
+{% set eyebrow = paragraph.field_badge_text.value ?: 'AUTHORIZED QUALITY STANDARDS' %}
+{% set heading = paragraph.field_heading_text.value ?: 'Multi-Brand Service Compatibility' %}
+
+<section id="our-brands" class="our-brands-section">
+  
+  {# ── Centred Section Header Container ── #}
+  <div class="our-brands-container">
+    <div class="our-brands-header">
+      <div class="our-brands-eyebrow">{{ eyebrow }}</div>
+      <h3 class="our-brands-heading">{{ heading }}</h3>
+    </div>
+  </div>
+
+  {# ── Full Width Edge-to-Edge Marquee Strip ── #}
+  <div class="our-brands-marquee-wrap">
+    <div class="our-brands-marquee-track">
+
+      {# Loop 1 #}
+      {% if content.field_brands %}
+        {% for key, item in content.field_brands %}
+          {% if key|first != '#' %}
+            {{ item }}
+          {% endif %}
+        {% endfor %}
+
+        {# Loop 2 (duplicate for infinite seamless scroll) #}
+        {% for key, item in content.field_brands %}
+          {% if key|first != '#' %}
+            {{ item }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+
+</section>
