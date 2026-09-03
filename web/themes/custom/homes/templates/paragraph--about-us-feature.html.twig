@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Child Paragraph template: about_us_feature (bundle machine name)
+ * Twig auto-discovery: paragraph--about-us-feature.html.twig
+ *
+ * Confirmed fields from node 1 / drush inspection:
+ *  - field_title        string      step title  e.g. "Select & Book Online"
+ *  - field_description  text_long   step body   (HTML, rendered via content)
+ *
+ * Renders as one step row: dark vertical bar + bold title + description text.
+ * Matches Next.js: flex items-start gap-4 / w-2.5 h-7 bg-slate-900 rounded-full
+ */
+#}
+
+{% set step_title = paragraph.field_title.value ?: '' %}
+
+<div class="about-step-item">
+  {# Dark vertical pill bar — w-2.5 h-7 bg-slate-900 rounded-full #}
+  <div class="about-step-bar"></div>
+
+  <div>
+    {% if step_title %}
+      <strong class="about-step-title">{{ step_title }}</strong>
+    {% endif %}
+    {% if content.field_description %}
+      <div class="about-step-desc">{{ content.field_description }}</div>
+    {% endif %}
+  </div>
+</div>

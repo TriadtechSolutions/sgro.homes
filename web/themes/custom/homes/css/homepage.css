@@ -1,8 +1,30 @@
-/**
- * @file
- * Dedicated Stylesheet for Homepage Hero Banner & Child Features.
- * Matching Next.js Hero.tsx component and UI reference design.
- */
+/* Prevent horizontal page overflow ("dancing" horizontal scrolling) */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+#page-wrapper,
+#page,
+#main-content,
+#main-content > .block,
+#main-content > .block > div,
+.region-content,
+.block-system-main-block {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Neutralize Drupal Views / Bootstrap negative row margins that break layout */
+.view-our-service,
+.view-our-service .view-content,
+.view-our-service .view-content.row,
+.views-element-container .row,
+.views-element-container {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+}
 
 /* Zero gap & margin reset between Header and Hero Section */
 header.sgro-header,
@@ -293,17 +315,25 @@ header.sgro-header,
   }
 
   .hero-banner-section .hero-actions {
-    width: 100%;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.85rem !important;
   }
 
-  .hero-banner-section .btn-hero-primary,
+  /* Primary button — larger */
+  .hero-banner-section .btn-hero-primary {
+    width: auto;
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    font-size: 0.875rem;
+  }
+
+  /* Secondary button — slightly smaller */
   .hero-banner-section .btn-hero-secondary {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    padding: 0.85rem 1.25rem;
+    width: auto;
+    display: inline-block;
+    padding: 0.9rem 1.9rem;
+    font-size: 0.8rem;
   }
 
   /* 2x2 Clean Grid on Mobile matching Image 2 */
@@ -329,3 +359,802 @@ header.sgro-header,
     margin-right: 0 !important;
   }
 }
+
+
+/* ============================================================
+   HOME ABOUT SECTION
+   Matches Next.js HomePage.tsx About block
+   bg: #e8f1fa | 2-col grid | arch image left | steps right
+   ============================================================ */
+
+/* Section Shell */
+.about-section {
+  padding: 5rem 1rem;
+  background-color: #e8f1fa;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .about-section {
+    padding: 7rem 1rem;
+  }
+}
+
+/* Container */
+.about-container {
+  max-width: 72rem;
+  /* 6xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 2-Column Grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem 4rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 4rem;
+  }
+}
+
+/* ── LEFT: Arch Image Column ── */
+.about-image-col {
+  display: flex;
+  justify-content: center;
+}
+
+.about-image-wrap {
+  width: 100%;
+  max-width: 28rem;
+}
+
+/* Spotlight Arch Frame — matching .girlike-spotlight-arch aspect-[4/5] */
+.about-spotlight-arch {
+  border-radius: 9999px 9999px 2rem 2rem;
+  border: 4px solid #ffffff;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  background: #ffffff;
+  padding: 0.5rem;
+  aspect-ratio: 4 / 5;
+}
+
+.about-spotlight-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9999px 9999px 1.25rem 1.25rem;
+  display: block;
+}
+
+.about-spotlight-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f5f9;
+  border-radius: 9999px 9999px 1.25rem 1.25rem;
+}
+
+/* ── RIGHT: Content Column ── */
+.about-content-col {
+  text-align: left;
+}
+
+/* Eyebrow Label — matching text-xs font-black uppercase tracking-widest text-slate-500 */
+.about-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+/* H2 Heading — matching text-3xl sm:text-5xl font-black text-slate-900 tracking-tight */
+.about-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.875rem, 5vw, 3rem);
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+/* Body text — matching text-sm sm:text-base text-slate-600 leading-relaxed font-medium */
+.about-body,
+.about-body p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9375rem;
+  color: #475569;
+  line-height: 1.75;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.about-body strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* ── Steps Block ── */
+.about-steps-wrap {
+  margin-bottom: 2rem;
+}
+
+/* "How We Service" sub-heading — matching font-heading font-black text-slate-900 text-lg sm:text-xl */
+.about-steps-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .about-steps-heading {
+    font-size: 1.25rem;
+  }
+}
+
+/* Steps list with spacing — matching space-y-6 */
+.about-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Single step row — matching flex items-start gap-4 */
+.about-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Dark vertical bar indicator — matching w-2.5 h-7 bg-slate-900 rounded-full flex-shrink-0 mt-0.5 */
+.about-step-bar {
+  width: 0.625rem;
+  /* 10px = w-2.5 */
+  height: 1.75rem;
+  /* 28px = h-7 */
+  background-color: #0f172a;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+/* Step title — matching text-sm font-black text-slate-900 block */
+.about-step-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: #0f172a;
+  display: block;
+}
+
+/* Step description — matching text-xs text-slate-600 mt-0.5 */
+.about-step-desc,
+.about-step-desc p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #475569;
+  margin-top: 0.125rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ── CTA Button ── */
+.about-cta-wrap {
+  margin-top: 2rem;
+}
+
+/* Full button styles for the About CTA (btn-hero-primary is scoped to hero section) */
+.about-cta-btn {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #ffffff !important;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 0.825rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border-radius: 50rem;
+  border: none;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.45);
+  transition: all 0.25s ease-in-out;
+  text-decoration: none !important;
+  width: auto;
+  cursor: pointer;
+}
+
+.about-cta-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.6);
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* ── Mobile overrides ── */
+@media (max-width: 767.98px) {
+  .about-section {
+    padding: 3.5rem 0;
+  }
+
+  .about-image-col {
+    order: -1;
+    /* image on top on mobile */
+  }
+
+  .about-steps-list {
+    gap: 1.25rem;
+  }
+}
+
+
+
+/* ============================================================
+   EXPLORE CATEGORIES — OUR SERVICES SECTION
+   View block: our_service  |  Style: unformatted list
+   Templates:
+     - views-view-unformatted--our-service.html.twig
+     - views-view-fields--our-service.html.twig
+   Design reference: Next.js page.tsx "Explore Categories" section
+     bg: #f4f8fc (light blue tint)  |  Border-bottom: #e2eef9
+     .girlike-category-arch in globals.css (arch shape)
+     Grid: 2-col mobile  →  4-col desktop
+     Each card: arch image frame  +  UPPERCASE title  +  subtitle
+   ============================================================ */
+
+/* ── Section Shell ── */
+.explore-categories-section {
+  background-color: #f4f8fc;
+  border-bottom: 1px solid #e2eef9;
+  padding: 5rem 1rem;
+  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .explore-categories-section {
+    padding: 7rem 1rem;
+  }
+}
+
+/* ── Container ── */
+.explore-categories-container {
+  max-width: 72rem; /* matches Next.js max-w-6xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+/* ── Section Header ── */
+.explore-categories-header {
+  margin-bottom: 3.5rem;
+}
+
+/* Eyebrow — "PICK YOUR SERVICE" */
+.explore-categories-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #94a3b8;   /* slate-400 */
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+/* H2 — "Explore Categories" */
+.explore-categories-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.875rem, 5vw, 3rem); /* text-3xl sm:text-5xl */
+  font-weight: 900;
+  color: #0f172a;   /* slate-900 */
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+/* ── Cards Grid — 2 col mobile → 4 col desktop ── */
+.explore-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1.5rem;
+  max-width: 64rem; /* max-w-5xl */
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .explore-categories-grid {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .explore-categories-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 2rem;
+  }
+}
+
+/* Views row wrapper — display:contents so the inner <a> becomes the grid cell */
+.explore-categories-grid .explore-cat-row {
+  display: contents;
+}
+
+/* ── Individual Arch Card — wrapping <a> ── */
+.explore-cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ── Arch Image Frame ── */
+/* Mirrors: .girlike-category-arch + aspect-[4/5] p-3 */
+.explore-cat-arch {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 9999px 9999px 16px 16px;
+  background-color: #f0f7fe;
+  border: 1.5px solid #dceaf7;
+  overflow: hidden;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.explore-cat-card:hover .explore-cat-arch {
+  transform: translateY(-6px);
+  border-color: #93c5fd;
+  box-shadow: 0 20px 30px -10px rgba(29, 78, 216, 0.15);
+}
+
+/* ── Image inside the arch frame ──
+   .explore-cat-img  = explicit <img> rendered by the fixed twig template
+   .explore-cat-arch img = catches any img nested inside Drupal field wrappers
+   Mirrors Next.js: w-full h-full object-cover rounded-t-full
+                    group-hover:scale-105 transition-transform duration-500
+*/
+.explore-cat-img,
+.explore-cat-arch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9999px 9999px 0 0;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.explore-cat-card:hover .explore-cat-img,
+.explore-cat-card:hover .explore-cat-arch img {
+  transform: scale(1.05);
+}
+
+/* Reset Drupal's .field / .field__item wrappers so they don't constrain the image size.
+   These are injected automatically when using {{ fields.X.content }} in Twig. */
+.explore-cat-arch .field,
+.explore-cat-arch .field__items,
+.explore-cat-arch .field__item {
+  width: 100%;
+  height: 100%;
+  display: block;
+  line-height: 0;
+  font-size: 0;
+}
+
+/* Remove any max-width Drupal image styles may add */
+.explore-cat-arch .field img,
+.explore-cat-arch .field__item img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover;
+  border-radius: 9999px 9999px 0 0;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.explore-cat-card:hover .explore-cat-arch .field img,
+.explore-cat-card:hover .explore-cat-arch .field__item img {
+  transform: scale(1.05);
+}
+
+/* Placeholder SVG shown when no image is set */
+.explore-cat-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px 9999px 0 0;
+  background-color: #e8f1fa;
+}
+
+/* ── Title (below arch) ── */
+/* Mirrors: font-heading font-black text-slate-900 text-sm sm:text-base uppercase tracking-wider */
+.explore-cat-title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .explore-cat-title {
+    font-size: 1rem;
+  }
+}
+
+.explore-cat-card:hover .explore-cat-title {
+  color: #1d4ed8; /* blue-700 */
+}
+
+/* ── Subtitle (below title) ── */
+/* Mirrors: text-xs text-slate-500 font-medium mt-0.5 */
+.explore-cat-sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #64748b; /* slate-500 */
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Empty state */
+.explore-categories-empty {
+  text-align: center;
+  color: #94a3b8;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  padding: 3rem 0;
+}
+
+/* ── Tablet (768–1024px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .explore-categories-section {
+    padding: 6rem 1rem;
+  }
+
+  .explore-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 44rem;
+  }
+}
+
+/* ── Mobile (< 640px) ── */
+@media (max-width: 639.98px) {
+  .explore-categories-section {
+    padding: 3.5rem 0.75rem;
+  }
+
+  .explore-categories-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .explore-categories-heading {
+    font-size: 1.875rem;
+  }
+
+  .explore-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .explore-cat-arch {
+    padding: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .explore-cat-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .explore-cat-sub {
+    font-size: 0.7rem;
+  }
+}
+
+
+/* ============================================================
+   EXCELLENCE SECTION — "What Makes S-Gro Special"
+   Paragraph bundle   : excellence  (parent)
+   Child bundle       : excellence_feature
+   Templates:
+     - paragraph--excellence.html.twig
+     - paragraph--excellence-feature.html.twig
+   Design reference   : Next.js page.tsx lines 368-477
+     bg: #ffffff (white)
+     Header: centred eyebrow + font-black H2
+     Grid: 12-col  →  left-4 (features) | centre-4 (arch img) | right-4 (features)
+     Feature item: w-10 h-10 rounded-2xl icon box + bold title + sm desc
+     Centre: girlike-spotlight-arch aspect-[3/4] bg-blue-50 p-2
+   ============================================================ */
+
+/* ── Section Shell ── */
+.excellence-section {
+  background-color: #ffffff;
+  padding: 5rem 1rem;
+  overflow: hidden;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .excellence-section {
+    padding: 7rem 1rem;
+  }
+}
+
+/* ── Container ── */
+.excellence-container {
+  max-width: 72rem; /* max-w-6xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ── Centred Section Header — max-w-2xl mx-auto mb-16 text-center ── */
+.excellence-header {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto 4rem;
+}
+
+/* Eyebrow — "ENGINEERING EXCELLENCE" */
+/* Mirrors: text-xs font-black uppercase tracking-widest text-slate-400 mb-1 */
+.excellence-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #94a3b8; /* slate-400 */
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+/* H2 — "What Makes S-Gro Special" */
+/* Mirrors: text-3xl sm:text-5xl font-black text-slate-900 tracking-tight */
+.excellence-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.875rem, 5vw, 3rem);
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+/* ── 3-Column Grid (matches lg:grid-cols-12 gap-10 items-center) ── */
+.excellence-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .excellence-grid {
+    grid-template-columns: 1fr 1fr 1fr; /* lg:col-span-4 each */
+    gap: 2.5rem;
+  }
+}
+
+/* Column shared */
+.excellence-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Left & right columns: gap between features = space-y-8 */
+.excellence-col--left,
+.excellence-col--right {
+  gap: 2rem;
+}
+
+/* Centre column: flex justify-center */
+.excellence-col--centre {
+  align-items: center;
+}
+
+/* ── Centre Arch Image Wrap ── */
+/* Mirrors: w-full max-w-[300px] */
+.excellence-img-wrap {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* ── Spotlight Arch — girlike-spotlight-arch aspect-[3/4] bg-blue-50 p-2 ── */
+.excellence-spotlight-arch {
+  aspect-ratio: 3 / 4;
+  border-radius: 9999px 9999px 32px 32px;
+  background-color: #eff6ff; /* blue-50 */
+  border: 4px solid #ffffff;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+/* ── Image inside arch ── */
+/* Mirrors: className="w-full h-full object-cover rounded-t-full" */
+.excellence-spotlight-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9999px 9999px 24px 24px;
+  display: block;
+}
+
+/* Placeholder */
+.excellence-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px 9999px 24px 24px;
+  background-color: #dbeafe;
+}
+
+/* ── Individual Feature Item ── */
+/* Mirrors Next.js: <div> wrapper with icon box + h3 + p */
+.excellence-feature {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* ── Icon Box ── */
+/* Mirrors: w-10 h-10 rounded-2xl bg-{color}-50 text-{color}-700
+            flex items-center justify-center font-bold mb-2 */
+.excellence-feature__icon-box {
+  width: 2.5rem;   /* w-10 */
+  height: 2.5rem;  /* h-10 */
+  border-radius: 1rem; /* rounded-2xl */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
+  /* Default: blue */
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* Cycle icon box colours through Next.js palette using nth-child:
+   item-1: blue   / item-2: emerald / item-3: indigo
+   item-4: amber  / item-5: rose    / item-6: blue (repeat)
+*/
+.excellence-col--left .excellence-feature:nth-child(1) .excellence-feature__icon-box {
+  background-color: #eff6ff; color: #1d4ed8; /* blue-50 / blue-700 */
+}
+.excellence-col--left .excellence-feature:nth-child(2) .excellence-feature__icon-box {
+  background-color: #ecfdf5; color: #047857; /* emerald-50 / emerald-700 */
+}
+.excellence-col--left .excellence-feature:nth-child(3) .excellence-feature__icon-box {
+  background-color: #eef2ff; color: #4338ca; /* indigo-50 / indigo-700 */
+}
+.excellence-col--right .excellence-feature:nth-child(1) .excellence-feature__icon-box {
+  background-color: #fffbeb; color: #b45309; /* amber-50 / amber-700 */
+}
+.excellence-col--right .excellence-feature:nth-child(2) .excellence-feature__icon-box {
+  background-color: #fff1f2; color: #be123c; /* rose-50 / rose-700 */
+}
+.excellence-col--right .excellence-feature:nth-child(3) .excellence-feature__icon-box {
+  background-color: #eff6ff; color: #1d4ed8; /* blue-50 / blue-700 */
+}
+
+/* Icon image (field_icon — direct image field) */
+.excellence-feature__icon-img {
+  width: 1.25rem;  /* w-5 */
+  height: 1.25rem; /* h-5 */
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Feature Title ── */
+/* Mirrors: text-lg font-black text-slate-900 mb-1 */
+.excellence-feature__title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+/* ── Feature Description ── */
+/* Mirrors: text-xs sm:text-sm text-slate-600 leading-relaxed font-medium */
+.excellence-feature__desc,
+.excellence-feature__desc p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #475569;
+  line-height: 1.75;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .excellence-feature__desc,
+  .excellence-feature__desc p {
+    font-size: 0.875rem;
+  }
+}
+
+/* ── Tablet (768–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .excellence-section {
+    padding: 6rem 1rem;
+  }
+
+  .excellence-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .excellence-col--centre {
+    grid-column: 1 / -1;
+    margin: 1rem 0;
+  }
+
+  .excellence-col--left,
+  .excellence-col--right {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Mobile (< 768px) ── */
+@media (max-width: 767.98px) {
+  .excellence-section {
+    padding: 3.5rem 0.5rem;
+  }
+
+  .excellence-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .excellence-heading {
+    font-size: 1.875rem;
+  }
+
+  .excellence-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .excellence-img-wrap {
+    max-width: 240px;
+  }
+
+  .excellence-feature__title {
+    font-size: 1rem;
+  }
+}
+

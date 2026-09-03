@@ -1,0 +1,77 @@
+{#
+/**
+ * @file
+ * Views fields row template for the "our_service" view.
+ *
+ * View machine name  : our_service
+ * Content type       : services
+ *
+ * Confirmed fields from DB inspection (node__field_* tables):
+ *   - title                  : Node title    — e.g. "WASHING MACHINE"
+ *   - field_image            : Image field   — direct file (has alt, width, height)
+ *                              DB: node__field_image / field_image_target_id
+ *   - field_label            : Plain text    — subtitle e.g. "Front & Top Load"
+ *                              DB: node__field_label / field_label_value
+ *
+ * Image is a DIRECT image field (not media) so we access it via:
+ *   row._entity.field_image.entity.uri.value
+ *   row._entity.field_image.alt
+ *
+ * Card href falls back to the node's path alias (from url()).
+ *
+ * Design reference: Next.js page.tsx "Explore Categories" (lines 205-228)
+ */
+#}
+
+{# ── Image URL — direct image field, bypasses Drupal field wrapper divs ── #}
+{% set image_uri = null %}
+{% set image_alt = '' %}
+{% if row._entity.field_image.entity %}
+  {% set image_uri = file_url(row._entity.field_image.entity.uri.value) %}
+  {% set image_alt = row._entity.field_image.alt ?: row._entity.title.value ?: 'Service image' %}
+{% endif %}
+
+{# ── Title — node title ── #}
+{% set cat_title = row._entity.title.value ?: '' %}
+
+{# ── Subtitle — field_label ── #}
+{% set cat_subtitle = row._entity.field_label.value ?: '' %}
+
+{# ── Card link — node URL / path alias ── #}
+{% set card_href = path('entity.node.canonical', {'node': row._entity.id()}) %}
+
+<a href="{{ card_href }}" class="explore-cat-card">
+
+  {# ── Arch Frame Image ── #}
+  <div class="explore-cat-arch">
+    {% if image_uri %}
+      <img
+        src="{{ image_uri }}"
+        alt="{{ image_alt }}"
+        class="explore-cat-img"
+        loading="lazy"
+      >
+    {% else %}
+      {# Placeholder icon when no image is uploaded #}
+      <div class="explore-cat-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+             stroke="#93c5fd" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>
+    {% endif %}
+  </div>
+
+  {# ── Title below arch ── #}
+  {% if cat_title %}
+    <h3 class="explore-cat-title">{{ cat_title }}</h3>
+  {% endif %}
+
+  {# ── Subtitle below title ── #}
+  {% if cat_subtitle %}
+    <div class="explore-cat-sub">{{ cat_subtitle }}</div>
+  {% endif %}
+
+</a>

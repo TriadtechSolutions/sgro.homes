@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Views unformatted style template for the "our_service" view / block.
+ *
+ * View machine name  : our_service
+ * Display block name : our_service (block_1)
+ * Style plugin       : unformatted list
+ *
+ * Design reference   : Next.js page.tsx — "Explore Categories" section (lines 191-232)
+ * globals.css class  : .girlike-category-arch
+ *
+ * Layout:
+ *   - bg-[#f4f8fc]  light blue-tinted background
+ *   - "PICK YOUR SERVICE" eyebrow  + "Explore Categories" H2
+ *   - 2-col mobile → 4-col desktop grid of arch-shaped clickable cards
+ *   - Each card: arch image frame → bold title → subtitle
+ *
+ * Available variables:
+ *   - rows               : Rendered rows from views-view-fields--our-service.html.twig
+ *   - rows[key].content  : The rendered row HTML
+ *   - rows[key].attributes: Row HTML attributes
+ *   - title              : View block title (optional)
+ */
+#}
+
+<section id="our-services" class="explore-categories-section" {{ attributes }}>
+  <div class="explore-categories-container">
+
+    {# ── Section Header ── #}
+    <div class="explore-categories-header">
+      <div class="explore-categories-eyebrow">PICK YOUR SERVICE</div>
+      <h2 class="explore-categories-heading">Explore Categories</h2>
+    </div>
+
+    {# ── Arch Cards Grid ── #}
+    {% if rows %}
+      <div class="explore-categories-grid">
+        {% for row in rows %}
+          <div {{ row.attributes.addClass('explore-cat-row') }}>
+            {{ row.content }}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="explore-categories-empty">No services found.</p>
+    {% endif %}
+
+  </div>
+</section>

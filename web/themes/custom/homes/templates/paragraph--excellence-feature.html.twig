@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Child Paragraph template: excellence_feature (bundle machine name)
+ * Twig auto-discovery: paragraph--excellence-feature.html.twig
+ *
+ * Design reference: Next.js page.tsx — feature items inside "What Makes S-Gro Special"
+ *   (lines 385-419, 437-471)
+ *   Each item: rounded-2xl icon box (coloured bg) + bold title + description text
+ *
+ * Confirmed fields from DB:
+ *   - field_badge_text    string    feature title  e.g. "Chip-Level Diagnostic Lab"
+ *                         (NOTE: field_title is NULL in DB — badge_text holds the title)
+ *   - field_description   text_long description HTML
+ *   - field_icon          image     icon image (direct file, field_icon_target_id)
+ *
+ * Icon colour cycles through the same palette as Next.js:
+ *   blue-50/blue-700 → emerald-50/emerald-700 → indigo-50/indigo-700
+ *   amber-50/amber-700 → rose-50/rose-700 → blue-50/blue-700 (repeat)
+ *   Achieved via CSS nth-child selectors on .excellence-feature.
+ *
+ * Available variables:
+ *   - paragraph : Full paragraph entity.
+ *   - content   : All rendered paragraph fields.
+ */
+#}
+
+{# ── Resolve fields ── #}
+{% set feat_title = paragraph.field_badge_text.value ?: '' %}
+
+{# ── Icon image (direct image field) ── #}
+{% set icon_url = null %}
+{% set icon_alt = feat_title %}
+{% if paragraph.field_icon.entity %}
+  {% set icon_url = file_url(paragraph.field_icon.entity.uri.value) %}
+  {% set icon_alt = paragraph.field_icon.alt ?: feat_title %}
+{% endif %}
+
+<div class="excellence-feature">
+
+  {# ── Icon Box ── #}
+  {# w-10 h-10 rounded-2xl bg-{color}-50 text-{color}-700 flex items-center justify-center #}
+  <div class="excellence-feature__icon-box">
+    {% if icon_url %}
+      <img
+        src="{{ icon_url }}"
+        alt="{{ icon_alt }}"
+        class="excellence-feature__icon-img"
+        loading="lazy"
+        aria-hidden="true"
+      >
+    {% else %}
+      {# Fallback wrench SVG #}
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round"
+           stroke-linejoin="round" aria-hidden="true">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77
+                 a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3
+                 l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      </svg>
+    {% endif %}
+  </div>
+
+  {# ── Feature Title ── #}
+  {% if feat_title %}
+    <h3 class="excellence-feature__title">{{ feat_title }}</h3>
+  {% endif %}
+
+  {# ── Description ── #}
+  {% if content.field_description %}
+    <div class="excellence-feature__desc">{{ content.field_description }}</div>
+  {% endif %}
+
+</div>
