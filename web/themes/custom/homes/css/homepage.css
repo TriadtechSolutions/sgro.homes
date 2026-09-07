@@ -1323,3 +1323,978 @@ header.sgro-header,
 }
 
 
+/* ============================================================
+   TESTIMONIALS SECTION — "What Our Customers Say"
+   Paragraph bundle   : testimonials       (parent)
+   Child bundle       : testimonials_child (child)
+   Templates:
+     - paragraph--testimonials.html.twig
+     - paragraph--testimonials-child.html.twig
+   Design reference   : Next.js page.tsx Section 7 (lines 507-586)
+     bg: #ffffff (white)  |  py-20 sm:py-28
+     Header: max-w-2xl mx-auto mb-14 text-center H2 (text-3xl sm:text-5xl font-black)
+     Wrapper: relative max-w-5xl mx-auto
+     Arrows: hidden md:flex absolute -left-6 / -right-6 top-1/2 -translate-y-1/2
+             w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg text-slate-700
+             hover:bg-blue-50 hover:border-blue-400
+     Card: bg-white, rounded-3xl (1.5rem), p-8, border border-slate-200, shadow-sm, hover:shadow-xl
+     Monogram Avatar: 68px circle (.girlike-monogram) with cycling pastel colors
+     Stars: 5 gold stars (amber-400)
+     Comment text: text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-medium
+     Author footer: pt-4 border-t border-slate-100, font-heading font-black slate-900 text-sm
+   ============================================================ */
+
+/* ── Section Shell ── */
+.testimonials-section {
+  background-color: #ffffff;
+  padding: 5rem 1rem;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .testimonials-section {
+    padding: 7rem 1rem;
+  }
+}
+
+/* ── Container (matches Next.js container max-w-6xl mx-auto px-4 text-center) ── */
+.testimonials-container {
+  max-width: 72rem; /* max-w-6xl */
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+  position: relative;
+}
+
+/* ── Centred Section Header (matches max-w-2xl mx-auto mb-14) ── */
+.testimonials-header {
+  max-width: 42rem; /* max-w-2xl */
+  margin: 0 auto 3.5rem;
+}
+
+/* H2 — "What Our Customers Say" */
+.testimonials-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.875rem, 5vw, 3rem); /* text-3xl sm:text-5xl */
+  font-weight: 900;
+  color: #0f172a; /* slate-900 */
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
+/* ── Carousel Outer Wrapper ── */
+.testimonials-carousel-wrapper {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .testimonials-carousel-wrapper {
+    max-width: 72rem;
+  }
+}
+
+/* ── Testimonials Unified Navigation Controls (Centered below cards) ── */
+.testimonials-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+  .testimonials-controls {
+    margin-top: 2.5rem;
+    gap: 1.25rem;
+  }
+}
+
+/* ── Navigation Arrow Buttons ── */
+.testimonial-arrow {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: 2.75rem;  /* 44px on mobile */
+  height: 2.75rem; /* 44px on mobile */
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+@media (min-width: 640px) {
+  .testimonial-arrow {
+    width: 3rem;  /* 48px on tablet & desktop */
+    height: 3rem; /* 48px on tablet & desktop */
+  }
+}
+
+.testimonial-arrow:hover {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.18), 0 4px 6px -4px rgba(59, 130, 246, 0.1);
+}
+
+.testimonial-arrow:active {
+  transform: translateY(0) scale(0.95) !important;
+}
+
+.testimonial-arrow:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ── Slider Track Container ── */
+.testimonials-slider-track {
+  display: flex;
+  gap: 1.5rem; /* gap-6 = 24px */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  padding: 0.75rem 0.625rem 1rem 0.625rem;
+  margin-left: -0.625rem;
+  margin-right: -0.625rem;
+}
+
+.testimonials-slider-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* ── Slide Item Wrapper (3 cards per view on desktop, 2 on tablet, 1 on mobile) ── */
+.testimonial-slide-item {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+  display: flex;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .testimonial-slide-item {
+    flex: 0 0 calc((100% - 1.5rem) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-slide-item {
+    flex: 0 0 calc((100% - 3rem) / 3);
+  }
+}
+
+/* Ensure card inside slide item takes full height */
+.testimonial-slide-item .testimonial-card {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Testimonial Card (matches Next.js bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl) ── */
+.testimonial-card {
+  background-color: #ffffff;
+  border-radius: 1.5rem; /* rounded-3xl = 24px */
+  padding: 2rem; /* p-8 = 32px */
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.04); /* hover:shadow-xl */
+}
+
+.testimonial-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Monogram Avatar Badge (matches girlike-monogram 68px circle) ── */
+.testimonial-monogram {
+  width: 4.25rem;  /* 68px */
+  height: 4.25rem; /* 68px */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin: 0 auto 1rem; /* mb-4 */
+}
+
+/* Cycle pastel colors matching Next.js monogramColors:
+   card 1: bg #ffeedb, text #9c4d11
+   card 2: bg #ffe4e6, text #9f1239
+   card 3: bg #fef9c3, text #854d0e
+   card 4: bg #dbeafe, text #1e40af
+   card 5: bg #ffeedb, text #9c4d11 (repeat)
+*/
+.testimonials-slider-track .testimonial-slide-item:nth-child(4n+1) .testimonial-monogram {
+  background-color: #ffeedb;
+  color: #9c4d11;
+}
+
+.testimonials-slider-track .testimonial-slide-item:nth-child(4n+2) .testimonial-monogram {
+  background-color: #ffe4e6;
+  color: #9f1239;
+}
+
+.testimonials-slider-track .testimonial-slide-item:nth-child(4n+3) .testimonial-monogram {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.testimonials-slider-track .testimonial-slide-item:nth-child(4n+4) .testimonial-monogram {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* ── 5 Gold Stars (matches flex justify-center text-amber-400 gap-1 mb-4) ── */
+.testimonial-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem; /* gap-1 */
+  margin-bottom: 1rem; /* mb-4 */
+}
+
+.testimonial-stars svg {
+  width: 1rem; /* w-4 */
+  height: 1rem; /* h-4 */
+  fill: #f59e0b; /* text-amber-400 */
+  stroke: #f59e0b;
+}
+
+/* ── Review Comment Text (matches text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-medium) ── */
+.testimonial-comment,
+.testimonial-comment p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem; /* text-xs */
+  color: #475569; /* text-slate-600 */
+  line-height: 1.625; /* leading-relaxed */
+  font-weight: 500;
+  margin-bottom: 1.5rem; /* mb-6 */
+}
+
+@media (min-width: 640px) {
+  .testimonial-comment,
+  .testimonial-comment p {
+    font-size: 0.875rem; /* sm:text-sm */
+  }
+}
+
+/* ── Author Footer (matches pt-4 border-t border-slate-100) ── */
+.testimonial-footer {
+  padding-top: 1rem; /* pt-4 */
+  border-top: 1px solid #f1f5f9; /* border-slate-100 */
+}
+
+/* Author Name (matches font-heading font-black text-slate-900 text-sm) */
+.testimonial-author-name {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 0.875rem; /* text-sm */
+  color: #0f172a; /* text-slate-900 */
+  margin-bottom: 0.125rem;
+}
+
+/* Location & Service Info (matches text-[11px] text-slate-400 mt-0.5) */
+.testimonial-author-info {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.6875rem; /* text-[11px] */
+  color: #94a3b8; /* text-slate-400 */
+  font-weight: 500;
+  margin-top: 0.125rem;
+}
+
+/* ============================================================
+   FAQ SECTION — "Frequently Asked Questions"
+   Paragraph bundle : faq       (parent)
+   Child bundle     : faq_child (child)
+   Design reference : Next.js FAQ.tsx component
+   ============================================================ */
+
+/* ── Section Shell ── */
+.faq-section {
+  background-color: #f8fafc; /* bg-slate-50 */
+  padding: 4rem 1rem;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .faq-section {
+    padding: 6rem 1rem;
+  }
+}
+
+/* ── Container (max-w-4xl mx-auto px-4 sm:px-6) ── */
+.faq-container {
+  max-width: 56rem; /* max-w-4xl = 896px */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .faq-container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* ── Section Header (max-w-2xl mx-auto text-center mb-12) ── */
+.faq-header {
+  max-width: 42rem; /* max-w-2xl = 672px */
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+/* Eyebrow Badge (bg-blue-50 text-blue-700 rounded-full text-xs font-black border border-blue-200) */
+.faq-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #eff6ff; /* bg-blue-50 */
+  color: #1d4ed8; /* text-blue-700 */
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid #bfdbfe; /* border-blue-200 */
+  margin-bottom: 0.75rem;
+}
+
+.faq-badge-icon {
+  color: #1d4ed8;
+  flex-shrink: 0;
+}
+
+/* H2 Heading (text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight) */
+.faq-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.875rem, 4vw, 2.25rem); /* text-3xl sm:text-4xl */
+  font-weight: 900;
+  color: #0f172a; /* text-slate-900 */
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+/* Subtitle (text-sm sm:text-base text-slate-600 mt-3 leading-relaxed) */
+.faq-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  color: #475569; /* text-slate-600 */
+  margin-top: 0.75rem;
+  line-height: 1.625;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .faq-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* ── Accordion List Container (space-y-3.5) ── */
+.faq-accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem; /* 14px */
+}
+
+/* ── Accordion Card Item (bg-white rounded-2xl border transition-all duration-200 overflow-hidden shadow-sm) ── */
+.faq-item {
+  background-color: #ffffff;
+  border-radius: 1rem; /* rounded-2xl = 16px */
+  border: 1px solid rgba(226, 232, 240, 0.8); /* border-slate-200/80 */
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item:hover {
+  border-color: #cbd5e1; /* hover:border-slate-300 */
+}
+
+/* Active / Open state card styles */
+.faq-item.is-open {
+  border-color: #93c5fd; /* border-blue-300 */
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -2px rgba(59, 130, 246, 0.05);
+  outline: 1px solid #dbeafe; /* ring-1 ring-blue-100 */
+}
+
+/* ── Question Button (w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4) ── */
+.faq-question-btn {
+  width: 100%;
+  padding: 1.25rem 1.25rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.15s ease;
+}
+
+@media (min-width: 640px) {
+  .faq-question-btn {
+    padding: 1.375rem 1.5rem;
+  }
+}
+
+.faq-question-btn:hover {
+  background-color: #f8fafc;
+}
+
+.faq-question-text {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  color: #0f172a; /* text-slate-900 */
+  font-size: 0.9375rem; /* text-sm */
+  line-height: 1.4;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .faq-question-text {
+    font-size: 1rem; /* sm:text-base */
+  }
+}
+
+/* Chevron Circle Toggle Indicator (w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0) */
+.faq-chevron-icon {
+  width: 1.75rem; /* 28px */
+  height: 1.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-color: #f1f5f9; /* bg-slate-100 */
+  color: #64748b; /* text-slate-500 */
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, color 0.2s ease;
+}
+
+.faq-item.is-open .faq-chevron-icon {
+  background-color: #2563eb; /* bg-blue-600 */
+  color: #ffffff;
+  transform: rotate(180deg);
+}
+
+/* ── Answer Panel (px-5 sm:px-6 pb-5 sm:pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3) ── */
+.faq-answer-panel {
+  display: none;
+  padding: 0 1.25rem 1.25rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .faq-answer-panel {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+}
+
+.faq-item.is-open .faq-answer-panel {
+  display: block;
+}
+
+.faq-answer-content {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #475569; /* text-slate-600 */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.625;
+  border-top: 1px solid #f1f5f9; /* border-slate-100 */
+  padding-top: 0.875rem;
+  font-weight: 500;
+}
+
+.faq-answer-content p {
+  margin-bottom: 0;
+}
+
+/* ── Still Have Questions CTA Banner ── */
+.faq-cta-card {
+  margin-top: 3rem;
+  background-color: #eff6ff; /* bg-blue-50 */
+  border-radius: 1.5rem; /* rounded-3xl = 24px */
+  padding: 1.5rem;
+  border: 1px solid #dbeafe; /* border-blue-100 */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .faq-cta-card {
+    padding: 2rem;
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+.faq-cta-title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  color: #0f172a; /* text-slate-900 */
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .faq-cta-title {
+    font-size: 1.125rem; /* text-lg */
+  }
+}
+
+.faq-cta-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #475569; /* text-slate-600 */
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .faq-cta-subtitle {
+    font-size: 0.875rem;
+  }
+}
+
+.faq-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.faq-cta-btn {
+  padding: 0.625rem 1.125rem;
+  border-radius: 9999px;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.faq-cta-btn--call {
+  background-color: #1d4ed8; /* bg-blue-700 */
+  color: #ffffff;
+}
+
+.faq-cta-btn--call:hover {
+  background-color: #1e40af; /* hover:bg-blue-800 */
+  color: #ffffff;
+}
+
+.faq-cta-btn--whatsapp {
+  background-color: #25D366;
+  color: #ffffff;
+}
+
+.faq-cta-btn--whatsapp:hover {
+  background-color: #1eb857;
+  color: #ffffff;
+}
+
+/* ============================================================
+   S-GRO FOOTER REDESIGN — Matching Next.js Footer.tsx Style
+   ============================================================ */
+
+.site-footer-wrapper {
+  background-color: #dceaf7; /* var(--color-girlike-footer-bg) */
+  color: #1e293b; /* text-slate-800 */
+  padding-top: 6rem; /* Expanded top height */
+  padding-bottom: 5rem; /* Expanded bottom height */
+  border-top: 1px solid #c8daf0;
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.site-footer-wrapper .footer-main-grid {
+  border-bottom: none; /* Removed line before copyrights as requested */
+  padding-bottom: 3.5rem;
+}
+
+/* ── Footer Column Headings ── */
+.footer-col h2,
+.footer-col .block-title,
+.footer-col .field--name-field-title .field__item,
+.footer-col .field--name-field-title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 900;
+  font-size: 1rem; /* text-base */
+  color: #0f172a; /* text-slate-900 */
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+  line-height: 1.25;
+}
+
+/* Hide extra Drupal field label on title if any */
+.footer-col .field--name-field-title .field__label {
+  display: none;
+}
+
+/* ── Column 1: Brand Logo, Social Links & Paragraph ── */
+.footer-col-first {
+  padding-right: 2rem; /* Add generous space between footer first and adjacent columns */
+}
+
+.footer-col-first .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-col-first .field--name-field-footer-logo {
+  order: 1;
+}
+
+.footer-col-first .field--name-field-label {
+  order: 2;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0f172a;
+  margin-bottom: 1rem; /* Increased spacing inside footer first */
+}
+
+.footer-col-first .field--name-field-social-media-links {
+  order: 3;
+}
+
+.footer-col-first .field--name-body {
+  order: 4;
+}
+
+/* Expanded Logo Height & Width */
+.footer-col-first .field--name-field-footer-logo img {
+  height: 68px; /* Expanded logo size to match Image 2 */
+  max-height: 72px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1.75rem; /* Increased spacing after logo */
+  display: block;
+}
+
+.footer-col-first .field--name-field-social-media-links .field__items {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Increased gap between social buttons */
+  margin-bottom: 1.75rem; /* Increased spacing after social buttons */
+}
+
+.footer-col-first .field--name-field-social-media-links .field__item {
+  display: inline-flex;
+}
+
+.footer-col-first .paragraph--type--icon-with-title {
+  width: 2.25rem; /* 36px */
+  height: 2.25rem; /* 36px */
+  border-radius: 0.5rem; /* rounded-lg */
+  background-color: #374151; /* bg-[#374151] */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.footer-col-first .paragraph--type--icon-with-title:hover {
+  transform: translateY(-1px);
+}
+
+/* Hide raw uploaded image icons to ensure crisp white SVG vectors */
+.footer-col-first .field--name-field-icon img {
+  display: none !important;
+}
+
+/* Crisp Vector SVG Social Icons Centered in Box */
+/* 1st icon: Facebook */
+.footer-col-first .field--name-field-social-media-links .field__item:nth-child(1) .paragraph--type--icon-with-title::before {
+  content: "";
+  width: 1rem; /* 16px */
+  height: 1rem; /* 16px */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/%3E%3C/svg%3E");
+}
+.footer-col-first .field--name-field-social-media-links .field__item:nth-child(1) .paragraph--type--icon-with-title:hover {
+  background-color: #1d4ed8;
+}
+
+/* 2nd icon: WhatsApp */
+.footer-col-first .field--name-field-social-media-links .field__item:nth-child(2) .paragraph--type--icon-with-title::before {
+  content: "";
+  width: 1rem; /* 16px */
+  height: 1rem; /* 16px */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c0-5.445 4.43-9.874 9.877-9.874 2.637 0 5.116 1.028 6.98 2.894a9.81 9.81 0 012.887 6.98c0 5.447-4.431 9.877-9.87 9.877'/%3E%3C/svg%3E");
+}
+.footer-col-first .field--name-field-social-media-links .field__item:nth-child(2) .paragraph--type--icon-with-title:hover {
+  background-color: #25D366;
+}
+
+/* 3rd icon: YouTube */
+.footer-col-first .field--name-field-social-media-links .field__item:nth-child(3) .paragraph--type--icon-with-title::before {
+  content: "";
+  width: 1rem; /* 16px */
+  height: 1rem; /* 16px */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'/%3E%3C/svg%3E");
+}
+.footer-col-first .field--name-field-social-media-links .field__item:nth-child(3) .paragraph--type--icon-with-title:hover {
+  background-color: #dc2626;
+}
+
+/* Transparent clickable overlay */
+.footer-col-first .field--name-field-social-links {
+  position: absolute;
+  inset: 0;
+}
+
+.footer-col-first .field--name-field-social-links a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 0; /* hide link text string */
+  color: transparent;
+}
+
+.footer-col-first .field--name-body p,
+.footer-col-first .field--name-body {
+  font-size: 0.75rem; /* text-xs */
+  color: #475569; /* text-slate-600 */
+  line-height: 1.625;
+  font-weight: 500;
+  max-width: 22rem;
+  margin-bottom: 0;
+}
+
+/* ── Column 2: Contact Information ── */
+.footer-col-second .content {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-col-second .field--name-field-title {
+  order: 1;
+}
+
+.footer-col-second .field--name-body {
+  order: 2;
+}
+
+.footer-col-second .field--name-field-email {
+  order: 3;
+}
+
+.footer-col-second .field--name-field-phone-number {
+  order: 4;
+}
+
+.footer-col-second .content > .field {
+  margin-bottom: 1rem;
+}
+
+.footer-col-second .field__label {
+  display: none !important;
+}
+
+/* Address Body — Clean 2-line rendering without awkward breaks */
+.footer-col-second .field--name-body p,
+.footer-col-second .field--name-body {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  max-width: 20rem;
+}
+
+.footer-col-second .field--name-body::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E");
+}
+
+/* Email */
+.footer-col-second .field--name-field-email {
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.footer-col-second .field--name-field-email::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+}
+
+.footer-col-second .field--name-field-email a,
+.footer-col-second .field--name-field-email .field__item {
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-col-second .field--name-field-email a:hover {
+  color: #1d4ed8;
+}
+
+/* Phone Numbers */
+.footer-col-second .field--name-field-phone-number {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.footer-col-second .field--name-field-phone-number::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
+}
+
+.footer-col-second .field--name-field-phone-number .field__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.footer-col-second .field--name-field-phone-number .field__item + .field__item::before {
+  content: "•";
+  margin-right: 0.375rem;
+  color: #64748b;
+}
+
+/* ── Columns 3 & 4: Useful Links & Help Center Navigation ── */
+.footer-col-third .nav,
+.footer-col-fourth .nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.footer-col-third .nav-item,
+.footer-col-fourth .nav-item {
+  margin: 0;
+}
+
+.footer-col-third .nav-link,
+.footer-col-fourth .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 600;
+  color: #334155; /* text-slate-700 */
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-col-third .nav-link::before,
+.footer-col-fourth .nav-link::before {
+  content: "➔";
+  color: #0f172a; /* text-slate-900 */
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.footer-col-third .nav-link:hover,
+.footer-col-fourth .nav-link:hover {
+  color: #1d4ed8; /* hover:text-blue-700 */
+}
+
+/* ── Footer Bottom Bar (Copyright) ── */
+.footer-bottom-bar {
+  border-top: none; /* Removed border line before copyrights */
+  padding-top: 1rem;
+  margin-top: 0;
+  font-size: 0.75rem; /* text-xs */
+  color: #475569; /* text-slate-600 */
+  font-weight: 500;
+}
+
+.footer-bottom-bar strong {
+  color: #0f172a;
+}
+
+
+.footer-bottom-bar strong {
+  color: #0f172a;
+}
+
+
+.footer-bottom-bar strong {
+  color: #0f172a;
+}
+
+
+
+

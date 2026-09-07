@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Parent Paragraph template: testimonials (bundle machine name)
+ * Twig auto-discovery: paragraph--testimonials.html.twig
+ *
+ * Design reference: Next.js page.tsx Section 7 "What Our Customers Say"
+ *                   (lines 507-586)
+ *
+ * Features:
+ *   - Centred section header: H2 ("What Our Customers Say")
+ *   - Tablet & Desktop: Side navigation arrows positioned outside cards (-3rem / -3.5rem)
+ *   - Mobile: Centred navigation controls below cards for clean mobile UI
+ *   - Shows 3 review cards on desktop, 2 on tablet, 1 on mobile
+ *   - Touch-swipe & scroll-snap enabled
+ */
+#}
+
+{# ── Resolve Heading ── #}
+{% set heading = paragraph.field_title.value ?: 'What Our Customers Say' %}
+
+<section id="testimonials" class="testimonials-section">
+  <div class="testimonials-container">
+
+    {# ── Centred Section Header ── #}
+    <div class="testimonials-header">
+      <h2 class="testimonials-heading">{{ heading }}</h2>
+    </div>
+
+    {# ── Carousel Outer Wrapper ── #}
+    <div class="testimonials-carousel-wrapper">
+
+      {# Slider Track Container #}
+      <div class="testimonials-slider-track" id="testimonials-slider-track">
+        {% if content.field_testimonials %}
+          {% for key, item in content.field_testimonials %}
+            {% if key|first != '#' %}
+              <div class="testimonial-slide-item">
+                {{ item }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      {# Unified Controls (Prev & Next Buttons side-by-side in one place) #}
+      <div class="testimonials-controls">
+        <button type="button" class="testimonial-arrow testimonial-arrow--prev" id="testimonial-prev-btn" aria-label="Previous reviews">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button type="button" class="testimonial-arrow testimonial-arrow--next" id="testimonial-next-btn" aria-label="Next reviews">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>{# /testimonials-carousel-wrapper #}
+
+  </div>
+</section>

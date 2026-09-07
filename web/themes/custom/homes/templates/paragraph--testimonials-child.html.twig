@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Child Paragraph template: testimonials_child (bundle machine name)
+ * Twig auto-discovery: paragraph--testimonials-child.html.twig
+ *
+ * Design reference: Next.js page.tsx lines 531-571
+ *   - Monogram avatar badge (girlike-monogram) with initials
+ *   - 5 Gold Stars (amber-400 fill)
+ *   - Review comment text
+ *   - Author footer (name + location/service info)
+ *
+ * Confirmed fields from DB:
+ *   - field_name         string     e.g. "Karthikeyan S."
+ *   - field_address      string     e.g. "RS Puram, Coimbatore • Washing Machine PCB Repair"
+ *   - field_description  text_long  review comment text
+ */
+#}
+
+{# ── Resolve Fields ── #}
+{% set author_name = paragraph.field_name.value    ?: '' %}
+{% set author_info = paragraph.field_address.value ?: '' %}
+
+{# ── Compute Initials ── #}
+{% set initials = '' %}
+{% if author_name %}
+  {% set parts = author_name|split(' ') %}
+  {% for part in parts %}
+    {% if loop.index <= 2 and part %}
+      {% set initials = initials ~ part|first|upper %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<div class="testimonial-card">
+  
+  <div class="testimonial-card__content">
+    {# ── Monogram Avatar Badge ── #}
+    {% if initials %}
+      <div class="testimonial-monogram">
+        {{ initials }}
+      </div>
+    {% endif %}
+
+    {# ── 5 Gold Stars ── #}
+    <div class="testimonial-stars" aria-label="5 out of 5 stars rating">
+      {% for i in 1..5 %}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5" aria-hidden="true">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      {% endfor %}
+    </div>
+
+    {# ── Review Comment Text ── #}
+    {% if content.field_description %}
+      <div class="testimonial-comment">
+        {{ content.field_description }}
+      </div>
+    {% endif %}
+  </div>
+
+  {# ── Author Footer ── #}
+  <div class="testimonial-footer">
+    {% if author_name %}
+      <div class="testimonial-author-name">{{ author_name }}</div>
+    {% endif %}
+    {% if author_info %}
+      <div class="testimonial-author-info">{{ author_info }}</div>
+    {% endif %}
+  </div>
+
+</div>

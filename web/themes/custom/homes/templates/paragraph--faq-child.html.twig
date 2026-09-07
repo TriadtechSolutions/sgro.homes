@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Child Paragraph template: faq_child (bundle machine name)
+ * Twig auto-discovery: paragraph--faq-child.html.twig
+ *
+ * Design reference: Next.js FAQ.tsx accordion item
+ */
+#}
+
+{% set question = paragraph.field_question.value %}
+{% set answer = paragraph.field_answers.value %}
+
+<div class="faq-item">
+  <button type="button" class="faq-question-btn" aria-expanded="false">
+    <span class="faq-question-text">{{ question }}</span>
+    <div class="faq-chevron-icon">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </div>
+  </button>
+
+  <div class="faq-answer-panel">
+    <div class="faq-answer-content">
+      {% if content.field_answers %}
+        {{ content.field_answers }}
+      {% else %}
+        {{ paragraph.field_answers.value|raw }}
+      {% endif %}
+    </div>
+  </div>
+</div>

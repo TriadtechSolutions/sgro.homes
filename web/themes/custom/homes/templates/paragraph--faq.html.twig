@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Parent Paragraph template: faq (bundle machine name)
+ * Twig auto-discovery: paragraph--faq.html.twig
+ *
+ * Design reference: Next.js FAQ.tsx component
+ */
+#}
+
+{% set heading = paragraph.field_title.value ?: 'Frequently Asked Questions' %}
+
+<section id="faqs" class="faq-section">
+  <div class="faq-container">
+    
+    {# ── Section Header ── #}
+    <div class="faq-header">
+      <div class="faq-badge">
+        <svg class="faq-badge-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span>Got Questions? We Have Answers</span>
+      </div>
+
+      <h2 class="faq-heading">{{ heading }}</h2>
+      
+      <p class="faq-subtitle">
+        Everything you need to know about our doorstep visit process, pricing transparency, and warranty terms.
+      </p>
+    </div>
+
+    {# ── Accordion List ── #}
+    <div class="faq-accordion-container" id="faq-accordion">
+      {% if content.field_faqs %}
+        {% for key, item in content.field_faqs %}
+          {% if key|first != '#' %}
+            {{ item }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {# ── Still Have Questions CTA Banner ── #}
+    <div class="faq-cta-card">
+      <div class="faq-cta-text">
+        <h4 class="faq-cta-title">Have a specific question about your appliance?</h4>
+        <p class="faq-cta-subtitle">Talk directly with our senior technician helpline for free consultation.</p>
+      </div>
+
+      <div class="faq-cta-buttons">
+        <a href="tel:+919876543210" class="faq-cta-btn faq-cta-btn--call">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>Call Helpline</span>
+        </a>
+
+        <a href="https://wa.me/919876543210?text=Hi%20S-Gro%20Pvt.%20Ltd.%2C%20I%20have%20a%20question%20regarding%20appliance%20repair." target="_blank" rel="noopener noreferrer" class="faq-cta-btn faq-cta-btn--whatsapp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

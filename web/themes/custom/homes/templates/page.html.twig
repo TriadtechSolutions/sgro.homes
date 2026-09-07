@@ -124,25 +124,29 @@
 
     {# Footer Region #}
     {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth or page.footer_fifth %}
-      <footer class="site-footer bg-dark text-white pt-5 pb-4 mt-auto">
-        <div class="container">
-          <div class="row">
+      <footer class="site-footer-wrapper pt-5 pb-4 mt-auto">
+        <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <div class="row footer-main-grid pb-4">
             {% if page.footer_first %}
-              <div class="col-md-3">{{ page.footer_first }}</div>
+              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 footer-col footer-col-first">{{ page.footer_first }}</div>
             {% endif %}
             {% if page.footer_second %}
-              <div class="col-md-3">{{ page.footer_second }}</div>
+              <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 footer-col footer-col-second">{{ page.footer_second }}</div>
             {% endif %}
             {% if page.footer_third %}
-              <div class="col-md-3">{{ page.footer_third }}</div>
+              <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 footer-col footer-col-third">{{ page.footer_third }}</div>
             {% endif %}
             {% if page.footer_fourth %}
-              <div class="col-md-3">{{ page.footer_fourth }}</div>
+              <div class="col-lg-3 col-md-6 mb-4 mb-lg-0 footer-col footer-col-fourth">{{ page.footer_fourth }}</div>
             {% endif %}
           </div>
           {% if page.footer_fifth %}
-            <div class="border-top border-secondary mt-4 pt-3 text-center">
+            <div class="footer-bottom-bar pt-4 text-center text-sm-start">
               {{ page.footer_fifth }}
+            </div>
+          {% else %}
+            <div class="footer-bottom-bar pt-4 text-center text-sm-start text-xs text-slate-600 font-medium">
+              Copyright © {{ "now"|date("Y") }} <strong>S-Gro Home Tech Services Pvt. Ltd.</strong> All rights reserved.
             </div>
           {% endif %}
         </div>
