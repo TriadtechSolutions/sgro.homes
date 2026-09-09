@@ -153,4 +153,91 @@
     }
   };
 
+  Drupal.behaviors.homesHeaderFooterNavLinks = {
+    attach: function (context) {
+      const navLinks = (context.querySelectorAll ? context : document).querySelectorAll('.sgro-header a, .navbar a, .primary-menu-container a, .site-footer-wrapper a, .footer-col a');
+
+      navLinks.forEach(function (link) {
+        if (link.dataset.navAttached) {
+          return;
+        }
+        link.dataset.navAttached = "true";
+
+        const text = link.textContent.trim().toLowerCase();
+        const href = (link.getAttribute('href') || '').toLowerCase();
+
+        // 1. Home Link
+        if (text === 'home' || href === '#' || href === '/#') {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          return;
+        }
+
+        // 2. About us
+        if (text.includes('about') || href.includes('about')) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#about') || document.querySelector('.about-section');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+          return;
+        }
+
+        // 3. Brands / Gallery
+        if (text.includes('brand') || text.includes('gallery') || href.includes('brand') || href.includes('gallery')) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#our-brands') || document.querySelector('.our-brands-section');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+          return;
+        }
+
+        // 4. Services
+        if (text.includes('service') || href.includes('service')) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#our-services') || document.querySelector('.explore-categories-section');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+          return;
+        }
+
+        // 5. FAQ
+        if (text.includes('faq') || href.includes('faq')) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#faqs') || document.querySelector('.faq-section');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+          return;
+        }
+
+        // 6. Contact us
+        if (text.includes('contact') || href.includes('contact')) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector('#book-visit') || document.querySelector('.hero-actions') || document.querySelector('#faqs');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          });
+          return;
+        }
+      });
+    }
+  };
+
 })(Drupal);

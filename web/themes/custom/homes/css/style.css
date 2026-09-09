@@ -6,6 +6,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 /* ----------------------------------------------------
+ * Smooth Scroll & Sticky Header Offset Fix (87px exact match)
+ * ---------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 87px;
+}
+
+section[id],
+div[id],
+.our-brands-section,
+.about-section,
+.explore-categories-section,
+.excellence-section,
+.faq-section,
+.testimonials-section,
+.hero-banner-section {
+  scroll-margin-top: 87px !important;
+}
+
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: 60px;
+  }
+  section[id],
+  div[id],
+  .our-brands-section,
+  .about-section,
+  .explore-categories-section,
+  .excellence-section,
+  .faq-section,
+  .testimonials-section,
+  .hero-banner-section {
+    scroll-margin-top: 60px !important;
+  }
+}
+
+/* ----------------------------------------------------
  * 1. Top Announcement Marquee Bar (TopBar.tsx match)
  * ---------------------------------------------------- */
 .sgro-topbar {
@@ -92,10 +129,10 @@
 header.sgro-header {
   background-color: #dceaf7 !important;
   border-bottom: none !important;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
   position: sticky !important;
   top: 0 !important;
-  z-index: 99 !important;
+  z-index: 1030 !important;
   margin-bottom: 0 !important;
 }
 
