@@ -158,13 +158,42 @@
       const navLinks = (context.querySelectorAll ? context : document).querySelectorAll('.sgro-header a, .navbar a, .primary-menu-container a, .site-footer-wrapper a, .footer-col a');
 
       navLinks.forEach(function (link) {
+        // ── Hard skip: never touch phone, email, or data links ──
+        const rawHref = (link.getAttribute('href') || '');
+        if (
+          rawHref.startsWith('tel:') ||
+          rawHref.startsWith('mailto:') ||
+          rawHref.startsWith('data:') ||
+          rawHref.startsWith('javascript:')
+        ) {
+          return; // leave native browser behaviour 100% intact
+        }
+
         if (link.dataset.navAttached) {
           return;
         }
         link.dataset.navAttached = "true";
 
         const text = link.textContent.trim().toLowerCase();
-        const href = (link.getAttribute('href') || '').toLowerCase();
+        const href = rawHref.toLowerCase();
+
+        // ── PRIORITY 0: Contact Us / Customer Support Center ──
+        // Must be checked FIRST — these links all use href="/" on this site,
+        // so they would otherwise be stolen by the Home or Services conditions.
+        var isContactText = (
+          text === 'contact us' ||
+          text === 'contact' ||
+          text.includes('customer support')
+        );
+        var isContactHref = /^\/contact(-us)?$/.test(href);
+
+        if (isContactText || isContactHref) {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            Drupal.behaviors.homesContactModal && Drupal.behaviors.homesContactModal.openModal();
+          });
+          return;
+        }
 
         // 1. Home Link
         if (text === 'home' || href === '#' || href === '/#') {
@@ -199,7 +228,7 @@
           return;
         }
 
-        // 4. Services
+        // 4. Services (exclude "Customer Support" — already handled above)
         if (text.includes('service') || href.includes('service')) {
           link.addEventListener('click', function (e) {
             e.preventDefault();
@@ -222,21 +251,128 @@
           });
           return;
         }
-
-        // 6. Contact us
-        if (text.includes('contact') || href.includes('contact')) {
-          link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector('#book-visit') || document.querySelector('.hero-actions') || document.querySelector('#faqs');
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-          });
-          return;
-        }
       });
+    }
+  };
+
+  // ── Contact Us Popup Modal Behavior ──
+  Drupal.behaviors.homesContactModal = {
+
+    openModal: function () {
+      var modal = document.getElementById('contact-us-modal');
+      if (!modal) return;
+      modal.classList.add('is-open');
+      document.body.classList.add('contact-modal-open');
+      var closeBtn = modal.querySelector('#contact-modal-close-btn');
+      if (closeBtn) {
+        setTimeout(function () { closeBtn.focus(); }, 80);
+      }
+    },
+
+    closeModal: function () {
+      var modal = document.getElementById('contact-us-modal');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('contact-modal-open');
+    },
+
+    attach: function (context) {
+      var self = this;
+
+      // ── Delegated click — Contact Us modal triggers ──
+      if (!document.body.dataset.contactDelegateAttached) {
+        document.body.dataset.contactDelegateAttached = 'true';
+
+        document.addEventListener('click', function (e) {
+          var el = e.target.closest(
+            'a, button, [class*="btn-book-visit"], [class*="btn-hero-primary"], [class*="about-cta-btn"], .about-cta-wrap a, .about-cta-wrap button'
+          );
+          if (!el) return;
+
+          // ── Hard exclusions — always let these pass through to browser ──
+          var rawHref = (el.getAttribute('href') || '');
+          if (
+            rawHref.startsWith('tel:') ||
+            rawHref.startsWith('mailto:') ||
+            rawHref.startsWith('data:') ||
+            rawHref.startsWith('javascript:')
+          ) {
+            return;
+          }
+
+          var href = rawHref.toLowerCase();
+
+          // Skip admin / contextual / user / external URLs
+          if (
+            href.includes('/admin/') ||
+            href.includes('/contextual/') ||
+            href.includes('/user/') ||
+            href.includes('?destination=') ||
+            (href.startsWith('http') && !href.includes(window.location.hostname))
+          ) {
+            return;
+          }
+
+          var text = el.textContent.trim().toLowerCase();
+
+          // 1. Specific button CLASSES that always open the modal
+          var isModalButton = (
+            el.classList.contains('btn-book-visit') ||
+            el.classList.contains('btn-book-visit-mobile') ||
+            el.classList.contains('btn-hero-primary') ||
+            el.classList.contains('about-cta-btn') ||
+            !!el.closest('.about-cta-wrap')
+          );
+
+          // 2. "Customer Support Center" text label (anywhere on page)
+          var isCustomerSupport = text.includes('customer support');
+
+          // 3. Generic "Contact Us" nav label or /contact href
+          var isContactLabel = (
+            text === 'contact us' ||
+            text === 'contact' ||
+            text === 'contact us >' ||
+            text === '→ contact us'
+          );
+          var isContactHref = /^\/contact(-us)?$/.test(href);
+
+          if (isModalButton || isCustomerSupport || isContactLabel || isContactHref) {
+            e.preventDefault();
+            e.stopPropagation();
+            self.openModal();
+          }
+        });
+      }
+
+      // ── Close button inside the modal ──
+      var closeBtn = (context.querySelector ? context : document).querySelector('#contact-modal-close-btn');
+      if (closeBtn && !closeBtn.dataset.contactModalCloseAttached) {
+        closeBtn.dataset.contactModalCloseAttached = 'true';
+        closeBtn.addEventListener('click', function () {
+          self.closeModal();
+        });
+      }
+
+      // ── Clicking the backdrop (overlay) closes the modal ──
+      var overlay = (context.querySelector ? context : document).querySelector('#contact-us-modal');
+      if (overlay && !overlay.dataset.contactOverlayAttached) {
+        overlay.dataset.contactOverlayAttached = 'true';
+        overlay.addEventListener('click', function (e) {
+          if (e.target === overlay) {
+            self.closeModal();
+          }
+        });
+      }
+
+      // ── Escape key closes the modal ──
+      if (!document.body.dataset.contactEscAttached) {
+        document.body.dataset.contactEscAttached = 'true';
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            self.closeModal();
+          }
+        });
+      }
     }
   };
 

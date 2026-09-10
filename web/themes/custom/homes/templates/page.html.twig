@@ -170,12 +170,95 @@
         </div>
         {% else %}
         <div class="footer-bottom-bar pt-4 text-center text-sm-start text-xs text-slate-600 font-medium">
-          Designed & developed by <a href="https://triadtechsolutions.in/" target="_blank" rel="noopener noreferrer" class="text-slate-900 font-bold hover:text-blue-600 transition-colors">TriadTech Solutions</a>
+          Designed &amp; developed by <a href="https://triadtechsolutions.in/" target="_blank" rel="noopener noreferrer" class="text-slate-900 font-bold hover:text-blue-600 transition-colors">TriadTech Solutions</a>
         </div>
         {% endif %}
       </div>
     </footer>
     {% endif %}
+
+    {# ── Contact Us Webform Popup Modal ── #}
+    <div id="contact-us-modal" class="contact-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" tabindex="-1">
+      <div class="contact-modal-container">
+
+        {# Close Button #}
+        <button class="contact-modal-close" id="contact-modal-close-btn" aria-label="Close contact form" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        {# ── Modal Header — "Book Appliance Technician" style ── #}
+        <div class="contact-modal-header">
+
+          {# Top badge pill #}
+          <div class="contact-modal-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            90-MIN DOORSTEP DISPATCH
+          </div>
+
+          {# Title & Subtitle #}
+          <h2 id="contact-modal-title" class="contact-modal-title">Book Appliance Technician</h2>
+          <p class="contact-modal-subtitle">Fixed ₹199 inspection fee &bull; Adjusted to repair invoice</p>
+
+          {# Trust Badges Row #}
+          <div class="contact-modal-trust-row">
+            <div class="contact-modal-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              90-Min Arrival
+            </div>
+            <div class="contact-modal-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              90-Day Warranty
+            </div>
+            <div class="contact-modal-trust-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Pay After Job
+            </div>
+          </div>
+
+        </div>
+        {# ── / Modal Header ── #}
+
+        {# Webform Body — rendered via homes_preprocess_page() in homes.theme #}
+        <div class="contact-modal-body">
+          {% if contact_webform %}
+            {{ contact_webform }}
+          {% else %}
+            <p style="font-size:0.85rem;color:#64748b;text-align:center;padding:1rem 0;">
+              The contact form could not be loaded. Please call us at
+              <a href="tel:+919876543210" style="color:#1d4ed8;font-weight:700;">+91 98765 43210</a>
+              or chat on WhatsApp.
+            </p>
+          {% endif %}
+        </div>
+
+        {# ── Modal Footer — dark trust strip ── #}
+        <div class="contact-modal-footer-strip">
+          <div class="contact-modal-footer-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            90-Day Free Warranty
+          </div>
+          <span class="contact-modal-footer-dot">•</span>
+          <div class="contact-modal-footer-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Certified Field Techs
+          </div>
+          <span class="contact-modal-footer-dot">•</span>
+          <div class="contact-modal-footer-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Pay After Work
+          </div>
+        </div>
+        {# ── / Modal Footer ── #}
+
+      </div>
+    </div>
+    {# ── / Contact Us Popup Modal ── #}
+
 
     {# Floating Quick Action Hotline & WhatsApp Buttons #}
     <div class="sgro-floating-actions">

@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform\Entity\Webform;
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
@@ -31,4 +32,24 @@ function homes_form_system_theme_settings_alter(&$form, FormStateInterface $form
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
   ];
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Builds and passes the 'contact_us' webform render array to page.html.twig
+ * so it can be embedded inside the Contact Us popup modal without needing
+ * the Twig Tweak module.
+ */
+function homes_preprocess_page(&$variables) {
+  // Load the 'contact_us' webform entity (the site's custom contact form).
+  $webform = Webform::load('contact_us');
+
+  if ($webform && $webform->isOpen()) {
+    $variables['contact_webform'] = \Drupal::service('entity.form_builder')
+      ->getForm(\Drupal\webform\Entity\WebformSubmission::create(['webform_id' => 'contact_us']), 'add');
+  }
+  else {
+    $variables['contact_webform'] = [];
+  }
 }

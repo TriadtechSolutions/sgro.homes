@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Contact Us Webform block template – used inside the popup modal.
+ *
+ * Available variables:
+ *   - content: The block content (the rendered webform).
+ *   - label:   The block label.
+ *   - attributes: HTML attributes for the wrapping element.
+ */
+#}
+<div{{ attributes.addClass('contact-popup-form-block') }}>
+  {% if content %}
+    {{ content }}
+  {% endif %}
+</div>

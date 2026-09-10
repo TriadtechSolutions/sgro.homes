@@ -2451,6 +2451,45 @@ header.sgro-header,
   color: #64748b;
 }
 
+/* ── Clickable contact links (address / email / phone) ── */
+.footer-address-link {
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-address-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.footer-email-link {
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-email-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.footer-phone-link {
+  color: #0f172a;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-phone-link:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.footer-phone-separator {
+  color: #64748b;
+}
+
 /* ── Columns 3 & 4: Useful Links & Help Center Navigation ── */
 .footer-col-third .nav,
 .footer-col-fourth .nav,
