@@ -2710,3 +2710,279 @@ header.sgro-header,
     display: block;
   }
 }
+
+/* ============================================================
+   ── Contact Us Popup Modal ──
+   ============================================================ */
+
+/* Overlay / Backdrop */
+.contact-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.contact-modal-overlay.is-open {
+  display: flex;
+}
+
+/* Prevent body scroll when modal is open */
+body.contact-modal-open {
+  overflow: hidden;
+}
+
+/* Modal Container */
+.contact-modal-container {
+  position: relative;
+  background: #ffffff;
+  border-radius: 1.25rem;
+  box-shadow: 0 25px 60px -10px rgba(15, 23, 42, 0.45),
+              0 10px 25px -5px rgba(15, 23, 42, 0.25);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: contactModalSlideIn 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes contactModalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Close Button */
+.contact-modal-close {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.contact-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Modal Header */
+.contact-modal-header {
+  padding: 1.75rem 1.75rem 1.25rem;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%);
+  border-radius: 1.25rem 1.25rem 0 0;
+  color: #ffffff;
+}
+
+/* Badge Pill */
+.contact-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.875rem;
+}
+
+/* Title */
+.contact-modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.3rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle */
+.contact-modal-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 1rem;
+  font-weight: 500;
+}
+
+/* Trust Badges Row */
+.contact-modal-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.contact-modal-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Modal Body — Webform area */
+.contact-modal-body {
+  padding: 1.5rem 1.75rem;
+}
+
+/* Webform field overrides inside modal */
+.contact-modal-body .form-item {
+  margin-bottom: 1rem;
+}
+
+.contact-modal-body label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.35rem;
+}
+
+.contact-modal-body input[type="text"],
+.contact-modal-body input[type="email"],
+.contact-modal-body input[type="tel"],
+.contact-modal-body input[type="number"],
+.contact-modal-body select,
+.contact-modal-body textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 0.625rem;
+  background: #f8fafc;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.contact-modal-body input:focus,
+.contact-modal-body select:focus,
+.contact-modal-body textarea:focus {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+  background: #ffffff;
+}
+
+.contact-modal-body textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.contact-modal-body .form-actions,
+.contact-modal-body .webform-button--submit,
+.contact-modal-body input[type="submit"],
+.contact-modal-body button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+}
+
+.contact-modal-body input[type="submit"]:hover,
+.contact-modal-body button[type="submit"]:hover,
+.contact-modal-body .webform-button--submit:hover {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  box-shadow: 0 8px 20px -4px rgba(29, 78, 216, 0.4);
+  transform: translateY(-1px);
+}
+
+.contact-modal-body .form-required::after,
+.contact-modal-body .form-required {
+  color: #ef4444;
+}
+
+/* Modal Footer Strip */
+.contact-modal-footer-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background: #0f172a;
+  border-radius: 0 0 1.25rem 1.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.contact-modal-footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-modal-footer-dot {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.5rem;
+}
+
+/* Responsive — small screens */
+@media (max-width: 480px) {
+  .contact-modal-container {
+    border-radius: 1rem;
+    max-height: 95vh;
+  }
+
+  .contact-modal-header {
+    padding: 1.25rem 1.25rem 1rem;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .contact-modal-title {
+    font-size: 1.15rem;
+  }
+
+  .contact-modal-body {
+    padding: 1.25rem;
+  }
+
+  .contact-modal-footer-strip {
+    border-radius: 0 0 1rem 1rem;
+    padding: 0.75rem 1rem;
+  }
+}
