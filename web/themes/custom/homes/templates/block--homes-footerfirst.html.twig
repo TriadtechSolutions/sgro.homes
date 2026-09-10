@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for Footer First block.
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+      {% if footer_logo_url and content.field_footer_logo %}
+        <a href="{{ footer_logo_url }}" class="footer-logo-link" aria-label="Footer Logo">
+          {{ content.field_footer_logo }}
+        </a>
+        {{ content|without('field_footer_logo', 'field_footer_logo_link') }}
+      {% else %}
+        {{ content|without('field_footer_logo_link') }}
+      {% endif %}
+    </div>
+  {% endblock %}
+</div>

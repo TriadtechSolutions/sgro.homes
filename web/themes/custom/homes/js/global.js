@@ -376,4 +376,73 @@
     }
   };
 
+  // ── Footer Section Scroll Links (Help Center + Useful Links) ──
+  // Uses delegated capture-phase listener so it fires BEFORE Drupal's own
+  // link handling which would navigate away on href="/" links.
+  Drupal.behaviors.homesFooterScrollLinks = {
+    attach: function (context) {
+      if (document.body.dataset.footerScrollAttached) return;
+      document.body.dataset.footerScrollAttached = 'true';
+
+      // Map of lowercase text fragments → target section selectors
+      var scrollMap = [
+        { match: 'frequently asked questions',  target: '#faqs, .faq-section'              },
+        { match: 'faq',                          target: '#faqs, .faq-section'              },
+        { match: 'about',                        target: '#about, .about-section'           },
+        { match: 'services',                     target: '#our-services, .explore-categories-section' },
+        { match: 'brands',                       target: '#our-brands, .our-brands-section' },
+      ];
+
+      // Contacts that should open the modal instead of scrolling
+      var modalMatches = ['customer support', 'contact'];
+
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('.site-footer-wrapper a, .footer-col a');
+        if (!link) return;
+
+        // Never intercept tel: / mailto: links
+        var href = (link.getAttribute('href') || '').toLowerCase();
+        if (href.startsWith('tel:') || href.startsWith('mailto:')) return;
+
+        var text = link.textContent.trim().toLowerCase();
+
+        // ── Modal links ──
+        for (var m = 0; m < modalMatches.length; m++) {
+          if (text.includes(modalMatches[m])) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            Drupal.behaviors.homesContactModal && Drupal.behaviors.homesContactModal.openModal();
+            return;
+          }
+        }
+
+        // ── Home link ──
+        if (text === 'home') {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        // ── Section scroll links ──
+        for (var i = 0; i < scrollMap.length; i++) {
+          if (text.includes(scrollMap[i].match)) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var selectors = scrollMap[i].target.split(', ');
+            var target = null;
+            for (var s = 0; s < selectors.length; s++) {
+              target = document.querySelector(selectors[s].trim());
+              if (target) break;
+            }
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            return;
+          }
+        }
+      }, true); // ← capture phase: fires before Drupal's own handlers
+    }
+  };
+
 })(Drupal);

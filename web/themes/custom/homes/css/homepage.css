@@ -67,6 +67,21 @@ header.sgro-header,
   margin-bottom: 0 !important;
 }
 
+/* Logo homepage link — no underline, no colour shift */
+.sgro-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+  border-radius: 0.375rem;
+}
+
+.sgro-logo-link:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 3px;
+}
+
+
 #page-wrapper,
 #page,
 #main-content,
@@ -2152,8 +2167,11 @@ header.sgro-header,
   align-items: flex-start;
 }
 
-.footer-col-first .field--name-field-footer-logo {
+.footer-col-first .field--name-field-footer-logo,
+.footer-col-first .footer-logo-link {
   order: 1;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .footer-col-first .field--name-field-label {
@@ -2180,7 +2198,8 @@ header.sgro-header,
 }
 
 /* Larger Brand Logo Sizing */
-.footer-col-first .field--name-field-footer-logo img {
+.footer-col-first .field--name-field-footer-logo img,
+.footer-col-first .footer-logo-link img {
   height: 72px;
   /* Increased logo size */
   max-height: 76px;

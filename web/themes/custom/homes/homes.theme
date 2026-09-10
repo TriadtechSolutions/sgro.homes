@@ -53,3 +53,23 @@ function homes_preprocess_page(&$variables) {
     $variables['contact_webform'] = [];
   }
 }
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function homes_preprocess_block(&$variables) {
+  if (($variables['elements']['#id'] ?? '') === 'homes_footerfirst') {
+    // Hide field_footer_logo_link from rendering separately as text
+    if (isset($variables['content']['field_footer_logo_link'])) {
+      $variables['content']['field_footer_logo_link']['#access'] = FALSE;
+    }
+
+    // Extract URL from field_footer_logo_link
+    $logo_url = '/';
+    $block_content = \Drupal\block_content\Entity\BlockContent::load(2);
+    if ($block_content && $block_content->hasField('field_footer_logo_link') && !$block_content->get('field_footer_logo_link')->isEmpty()) {
+      $logo_url = $block_content->get('field_footer_logo_link')->first()->getUrl()->toString();
+    }
+    $variables['footer_logo_url'] = $logo_url;
+  }
+}

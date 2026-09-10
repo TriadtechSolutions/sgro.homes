@@ -46,9 +46,12 @@
           {# Left: Brand Logo Region #}
           {% if page.header %}
           <div class="navbar-brand d-flex align-items-center me-auto me-lg-4 py-0">
-            {{ page.header }}
+            <a href="/" aria-label="S-Gro Homes — Go to homepage" class="sgro-logo-link">
+              {{ page.header }}
+            </a>
           </div>
           {% endif %}
+
 
           {# Right Header Actions (Desktop & Mobile Header) #}
           <div
