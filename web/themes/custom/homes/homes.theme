@@ -73,3 +73,65 @@ function homes_preprocess_block(&$variables) {
     $variables['footer_logo_url'] = $logo_url;
   }
 }
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function homes_preprocess_field(&$variables) {
+  $element = $variables['element'];
+
+  // Make field_email linkable with mailto:
+  if ($element['#field_name'] === 'field_email') {
+    foreach ($variables['items'] as $delta => &$item) {
+      $email_str = '';
+      if (is_array($item['content']) && isset($item['content']['#markup'])) {
+        $email_str = trim(strip_tags((string)$item['content']['#markup']));
+      } elseif (is_string($item['content'])) {
+        $email_str = trim(strip_tags($item['content']));
+      } else {
+        $renderer = \Drupal::service('renderer');
+        $email_str = trim(strip_tags((string)$renderer->renderInIsolation($item['content'])));
+      }
+
+      if (!empty($email_str)) {
+        $item['content'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'a',
+          '#attributes' => [
+            'href' => 'mailto:' . $email_str,
+            'class' => ['footer-email-link'],
+          ],
+          '#value' => $email_str,
+        ];
+      }
+    }
+  }
+
+  // Make field_phone_number linkable with tel:
+  if ($element['#field_name'] === 'field_phone_number') {
+    foreach ($variables['items'] as $delta => &$item) {
+      $phone_str = '';
+      if (is_array($item['content']) && isset($item['content']['#markup'])) {
+        $phone_str = trim(strip_tags((string)$item['content']['#markup']));
+      } elseif (is_string($item['content'])) {
+        $phone_str = trim(strip_tags($item['content']));
+      } else {
+        $renderer = \Drupal::service('renderer');
+        $phone_str = trim(strip_tags((string)$renderer->renderInIsolation($item['content'])));
+      }
+
+      $clean_phone = preg_replace('/[^0-9\+]/', '', $phone_str);
+      if (!empty($clean_phone)) {
+        $item['content'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'a',
+          '#attributes' => [
+            'href' => 'tel:' . $clean_phone,
+            'class' => ['footer-phone-link'],
+          ],
+          '#value' => $phone_str,
+        ];
+      }
+    }
+  }
+}
