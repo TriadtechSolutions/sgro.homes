@@ -17,7 +17,7 @@
 
 
 <section class="hero-banner-section position-relative overflow-hidden text-white"
-  style="{% if bg_image_url %}background-image: url('{{ bg_image_url }}');{% endif %}">
+  {% if bg_image_url %}style="background-image: url('{{ bg_image_url }}');"{% endif %}>
   {# Dark Gradient Overlay #}
   <div class="hero-overlay position-absolute inset-0"></div>
 

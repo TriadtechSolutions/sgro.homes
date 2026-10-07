@@ -225,21 +225,23 @@ header.sgro-header {
   color: #1e293b !important;
   text-decoration: none !important;
   padding: 0.5rem 0 !important;
-  transition: color 0.2s ease-in-out !important;
+  transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 0.35rem !important;
   background: transparent !important;
   border: none !important;
+  border-bottom: 2px solid transparent !important;
 }
 
 .primary-menu-container li>a:hover,
 .primary-menu-container .nav-link:hover,
 .primary-menu-container .menu-item>a:hover {
   color: #1d4ed8 !important;
+  border-bottom: 2px solid #1d4ed8 !important;
 }
 
-/* Active Link State (Next.js font-black + border-b-2) */
+/* Active Link State - No underline by default, underline on hover */
 .primary-menu-container .nav-link.is-active,
 .primary-menu-container .nav-link.active,
 .primary-menu-container .menu-item a.is-active,
@@ -248,8 +250,17 @@ header.sgro-header {
 .primary-menu-container .is-active {
   color: #1e40af !important;
   font-weight: 900 !important;
+  border-bottom: 2px solid transparent !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.primary-menu-container .nav-link.is-active:hover,
+.primary-menu-container .nav-link.active:hover,
+.primary-menu-container .menu-item a.is-active:hover,
+.primary-menu-container .menu-item a.active:hover,
+.primary-menu-container .menu-item--active-trail>a:hover,
+.primary-menu-container .is-active:hover {
   border-bottom: 2px solid #1d4ed8 !important;
-  padding-bottom: 0.25rem !important;
 }
 
 /* Animated Rotating Dropdown Chevron Icon for Parents */
