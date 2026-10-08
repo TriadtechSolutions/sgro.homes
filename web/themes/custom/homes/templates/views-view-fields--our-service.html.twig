@@ -40,7 +40,7 @@
 {# ── Card link — node URL / path alias ── #}
 {% set card_href = path('entity.node.canonical', {'node': row._entity.id()}) %}
 
-<a href="{{ card_href }}" class="explore-cat-card">
+<div class="explore-cat-card">
 
   {# ── Arch Frame Image ── #}
   <div class="explore-cat-arch">
@@ -74,4 +74,4 @@
     <div class="explore-cat-sub">{{ cat_subtitle }}</div>
   {% endif %}
 
-</a>
+</div>
