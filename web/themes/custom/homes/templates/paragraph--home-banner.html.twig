@@ -12,8 +12,8 @@
 {% set bg_image_url = file_url(paragraph.field_home_banner_image.entity.uri.value) %}
 {% set primary_url = paragraph.field_primary_button_link.0.url %}
 {% set primary_title = paragraph.field_primary_button_link.0.title %}
-{% set secondary_url = (paragraph.field_secondary_button_link.0.uri == 'internal:/' or not paragraph.field_secondary_button_link.0.uri) ? 'tel:+919876543210' : paragraph.field_secondary_button_link.0.url %}
-{% set secondary_title = paragraph.field_secondary_button_link.0.title ?: 'Call +91 98765 43210' %}
+{% set secondary_url = (paragraph.field_secondary_button_link.0.uri == 'internal:/' or not paragraph.field_secondary_button_link.0.uri) ? 'tel:+919344282191' : paragraph.field_secondary_button_link.0.url %}
+{% set secondary_title = paragraph.field_secondary_button_link.0.title ?: 'Call +91 93442 82191' %}
 
 
 <section class="hero-banner-section position-relative overflow-hidden text-white"
