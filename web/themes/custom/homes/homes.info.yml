@@ -3,6 +3,7 @@ type: theme
 description: 'Basic structure for a Bootstrap Barrio SubTheme.'
 core_version_requirement: ^10.3 || ^11
 base theme: bootstrap_barrio
+logo: logo.png
 
 libraries:
   - homes/bootstrap_cdn

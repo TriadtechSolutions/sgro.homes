@@ -142,7 +142,7 @@ header.sgro-header {
 }
 
 .navbar-homes .container {
-  min-height: 80px !important;
+  min-height: 100px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -150,7 +150,7 @@ header.sgro-header {
 
 @media (min-width: 640px) {
   .navbar-homes .container {
-    min-height: 96px !important;
+    min-height: 130px !important;
   }
 }
 
@@ -159,8 +159,8 @@ header.sgro-header {
 .navbar-homes .navbar-brand img,
 .navbar-homes .site-branding img,
 .sgro-header img {
-  height: 52px !important;
-  max-height: 64px !important;
+  height: 100px !important;
+  max-height: 110px !important;
   width: auto !important;
   object-fit: contain !important;
   object-position: left !important;
@@ -173,7 +173,8 @@ header.sgro-header {
   .navbar-homes .navbar-brand img,
   .navbar-homes .site-branding img,
   .sgro-header img {
-    height: 64px !important;
+    height: 130px !important;
+    max-height: 140px !important;
   }
 }
 
